@@ -5,7 +5,7 @@
 
 /**
  * Off gate:
- * out = false (on)
+ * out = false (off)
  */
 
 CHIP Off {
@@ -14,5 +14,5 @@ CHIP Off {
 
     PARTS:
     // Put your code here:
-    Nand(a=true,b=true,out=out);
+    Nand(a=true, b=false, out=out);
 }

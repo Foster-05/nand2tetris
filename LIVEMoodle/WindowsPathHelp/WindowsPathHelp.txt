@@ -1,0 +1,13 @@
+Much of what we do in the course will come from the command line. For windows, you will need to add the nand2tetris\tools directory to your path.
+
+You can do this by editing the system environment variables. However, on Bucknell computers, this seems to be overwritten.
+
+I have developed a small script that will set your user path to include the current folder.
+
+To use this:
+
+a) Copy the "AddDirectoryToPath.bat" _into_ the directory with all of the executable files.
+b) Double-click the AddDirectoryToPath file. (A command window will briefly flash up)
+c) Open up a new terminal (CMD.exe) and the executable files within the directory should now be accessible.
+
+You only need to do this once, and windows should remember. However, Bucknell may periodically wipe these variables (or you may use a different computer). In that case, just repeat the process.
