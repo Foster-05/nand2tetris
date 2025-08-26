@@ -4,7 +4,7 @@
 To run HardwareSimulator: navigate to nand2tetris root, run ./HardwareSimulator
 
 
-
+---
 
 
 
@@ -59,9 +59,13 @@ CHIP And4{
 ```
 ---
 <h3>To break up indexes:</h3>
+
 ```
+
 Add16(a[0..7]=lsb, a[8..15]=msb, b=..., out=...);
+
 ```
+
 Booleans can be used as buses of any width.
 
 
