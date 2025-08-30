@@ -41,5 +41,52 @@ CHIP ALU {
         ng;      // if (out < 0)  equals 1, else 0
 
     PARTS:
-    //// Replace this comment with your code.
+    //Create full true/false strings from z with the opposite value
+    RepeatInverse(a=zx, out=notzx);
+    RepeatInverse(a=zy, out=notzy);
+
+    //Compare with zeroing values (b=0 out=0)
+    And16(a=x, b=notzx, out=xnew);
+    And16(a=y, b=notzy, out=ynew);
+    //Done with zeroing
+
+    //XOR nx and x to flip if nx 1 and not if 0
+    Xor16(a=xnew, b=nx, out=xnew2);
+    Xor16(a=ynew, b=ny, out=ynew2);
+    //Done with negating
+
+    //Bitwise And together
+    And16(a=xnew2, b=ynew2, out=tmp01);
+    Not(in=f, out=tmp02);
+    //If f=0 (calculated above), output to xyand
+    And116(a=tmp01, b=tmp02, out=xyand1);
+
+    //Calculate 2s complement addition
+    Add16(a=xnew2, b=ynew2, out=tmp03);
+    //If f=1, output to xyand
+    And116(a=tmp03, b=f, out=xyand2);
+    //Only one xyand should be valued, or them to output the one that is
+    Or16(a=xyand1, b=xyand2, out=xyand);
+    
+    
+    //Calculate bitwise not of current output
+    Not16(in=xyand, out=xynot);
+    //Output the not-ed value if no=1
+    And116(a=xynot, b=no, out=notout);
+    //Output the older value if no=0
+    Not(in=no, out=tmp04);
+    And116(a=xyand, b=tmp04, out=yesout);
+
+    //Only one of notout or yesout should be valued.
+    //Or the two together to have one output of the one that is valued
+    Or16(a=notout, b=yesout, out=finalout);
+    //And with 1 to get a copy to output
+    And16(a=finalout, b=true, out=out);
+    
+    //Calculate ng: compare MSB to a binary 1
+    IsNegative(a=finalout, out=ng);
+
+    //Calculate zr: Or all values together and with false, then NOT
+    IsEmpty(a=finalout, out=zr);
+    
 }

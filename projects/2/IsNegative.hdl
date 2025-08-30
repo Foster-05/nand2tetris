@@ -1,0 +1,14 @@
+
+/**
+ * IsNegative: Checks the MSB of a 16-bit input to evaluate if it's negative.
+ */
+CHIP IsNegative {
+    IN a[16];    // 1-bit inputs
+    OUT out; // Left bit of a + b
+
+    PARTS:
+    And(a=a[15], b=true, out=out);
+    
+    
+    
+}

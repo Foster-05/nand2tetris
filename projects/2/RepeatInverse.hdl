@@ -1,0 +1,15 @@
+/**
+ * 16-bit inverse repeater: Creates a fully true or false 16 bit bus from the opposite of a 1-bit input
+ */
+CHIP RepeatInverse {
+    IN a[1];
+    OUT out[16];
+
+    PARTS:
+    Not(in=a, out=anot);
+    Repeat(a=anot, out=out);
+
+
+
+    
+}

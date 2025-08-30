@@ -1,0 +1,35 @@
+/**
+* Checks if a bus is empty
+ *  1 if empty, 0 if valued
+ */
+CHIP IsEmpty {
+    IN a[16];
+    OUT out[1];
+
+    PARTS:
+    Or(a=a[0], b=false, out=tmp1);
+    Or(a=tmp1, b=a[1], out=tmp2);
+    Or(a=tmp2, b=a[2], out=tmp3);
+    Or(a=tmp3, b=a[3], out=tmp4);
+    Or(a=tmp4, b=a[4], out=tmp5);
+    Or(a=tmp5, b=a[5], out=tmp6);
+    Or(a=tmp6, b=a[6], out=tmp7);
+    Or(a=tmp7, b=a[7], out=tmp8);
+    Or(a=tmp8, b=a[8], out=tmp9);
+    Or(a=tmp9, b=a[9], out=tmp10);
+    Or(a=tmp10, b=a[10], out=tmp11);
+    Or(a=tmp11, b=a[11], out=tmp12);
+    Or(a=tmp12, b=a[12], out=tmp13);
+    Or(a=tmp13, b=a[13], out=tmp14);
+    Or(a=tmp14, b=a[14], out=tmp15);
+    Or(a=tmp15, b=a[15], out=tmp16);
+
+    Not(in=tmp16, out=out);
+    
+
+        
+
+    
+    
+    
+}
