@@ -1,0 +1,55 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/3/b/RAM4K.hdl
+/**
+ * Memory of 4K 16-bit registers.
+ * If load is asserted, the value of the register selected by
+ * address is set to in; Otherwise, the value does not change.
+ * The value of the selected register is emitted by out.
+ */
+CHIP RAM4K {
+    IN in[16], load, address[12];
+    OUT out[16];
+
+    PARTS:
+   DMux8Way16(in=in, sel=address[0..2], a=RamA, 
+                                        b=RamB, 
+                                        c=RamC, 
+                                        d=RamD, 
+                                        e=RamE, 
+                                        f=RamF, 
+                                        g=RamG, 
+                                        h=RamH);
+
+
+    Or16Way(in=RamA, out=tmpA);
+        And(a=tmpA, b=load, out=loadA);
+    Or16Way(in=RamB, out=tmpB);
+        And(a=tmpB, b=load, out=loadB);
+    Or16Way(in=RamC, out=tmpC);
+        And(a=tmpC, b=load, out=loadC);
+    Or16Way(in=RamD, out=tmpD);
+        And(a=tmpD, b=load, out=loadD);
+    Or16Way(in=RamE, out=tmpE);
+        And(a=tmpE, b=load, out=loadE);
+    Or16Way(in=RamF, out=tmpF);
+        And(a=tmpF, b=load, out=loadF);
+    Or16Way(in=RamG, out=tmpG);
+        And(a=tmpG, b=load, out=loadG);
+    Or16Way(in=RamH, out=tmpH);    
+        And(a=tmpH, b=load, out=loadH);
+
+
+    RAM512(in=RamA, load=loadA, address=address[3..11], out=outA);
+    RAM512(in=RamB, load=loadB, address=address[3..11], out=outB);
+    RAM512(in=RamC, load=loadC, address=address[3..11], out=outC);
+    RAM512(in=RamD, load=loadD, address=address[3..11], out=outD);
+    RAM512(in=RamE, load=loadE, address=address[3..11], out=outE);
+    RAM512(in=RamF, load=loadF, address=address[3..11], out=outF);
+    RAM512(in=RamG, load=loadG, address=address[3..11], out=outG);
+    RAM512(in=RamH, load=loadH, address=address[3..11], out=outH);
+
+    Mux8Way16(a=outA, b=outB, c=outC, d=outD, e=outE, f=outF, g=outG, h=outH, sel=address[0..2], out=out);
+    
+}

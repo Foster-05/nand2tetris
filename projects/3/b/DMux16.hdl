@@ -1,0 +1,15 @@
+/**
+ * 16-bit Demultiplexor:
+ * [a, b] = [in, 0] if sel = 0
+ *          [0, in] if sel = 1
+ */
+CHIP DMux16 {
+    IN in[16], sel;
+    OUT a[16], b[16];
+
+    PARTS:
+    Not(in=sel, out=notsel);
+
+    And116(a=in, b=notsel, out=a);
+    And116(a=in,b=sel, out=b);
+}

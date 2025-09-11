@@ -14,5 +14,14 @@ CHIP PC {
     OUT out[16];
     
     PARTS:
-    //// Replace this comment with your code.
+    //Create an increment and choose between the previous value or the incremented value
+    Inc16(in=latched, out=incremented);
+    Mux16(a=latched, b=incremented, sel=inc, out=incout);
+    //Choose between the previous value, incremented value, or loaded value
+    Mux16(a=incout, b=in, sel=load, out=loadout);
+    //Choose between the previous value, incremented value, loaded value, or reset value
+    Mux16(a=loadout, b=false, sel=reset, out=repeat);
+        
+    //Feed output into a register, feed the output back in to the top and to the output
+    Register(in=repeat, load=true, out=latched, out=out);    
 }

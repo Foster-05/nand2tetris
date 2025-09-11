@@ -9,9 +9,29 @@
  * The value of the selected register is emitted by out.
  */
 CHIP RAM16K {
-    IN in[16], load, address[14];
+    IN in[16], load, address[15];
     OUT out[16];
 
     PARTS:
-    //// Replace this comment with your code.
+    //Input 1 into the load at the correct address, leave the others 0
+    DMux8Way(in=load, sel=address[0..2], a=loadA, 
+                                 b=loadB, 
+                                 c=loadC, 
+                                 d=loadD, 
+                                 e=loadE, 
+                                 f=loadF, 
+                                 g=loadG, 
+                                 h=loadH);    
+    //Load registers, load the one at the address, and retrieve output
+    RAM4K(in=in, load=loadA, address=address[3..14], out=outA);
+    RAM4K(in=in, load=loadB, address=address[3..14], out=outB);
+    RAM4K(in=in, load=loadC, address=address[3..14], out=outC);
+    RAM4K(in=in, load=loadD, address=address[3..14], out=outD);
+    RAM4K(in=in, load=loadE, address=address[3..14], out=outE);
+    RAM4K(in=in, load=loadF, address=address[3..14], out=outF);
+    RAM4K(in=in, load=loadG, address=address[3..14], out=outG);
+    RAM4K(in=in, load=loadH, address=address[3..14], out=outH);
+    //Select output
+    Mux8Way16(a=outA, b=outB, c=outC, d=outD, e=outE, f=outF, g=outG, h=outH, sel=address[0..2], out=out);
+    
 }
