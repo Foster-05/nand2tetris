@@ -9,56 +9,111 @@
 // the screen should be cleared.
 
 //// Replace this comment with your code.
+//*******************************************************
+//Initialize CUR_ADDRESS to the start of SCREEN
+@SCREEN
+D = A
+@ADDY
+M = D
 
-//KBD - SCREEN = a 512*256 = 131072/16=8192 which is the amount of registers to write to the screen 24576 - 16384 = 8192
 
-(WAIT)
+//HOLD loop: hold screen at the beginning of the screen
+//******************************************************
+(HOLD)
+
+//Check if keyboard is pressed
+//If keyboard pressed: jump to FILL
 @KBD
-D=M
+D = M
 @FILL
-M=D;JGT
-//When KBD is valued jump to fill
+D;JNE
+//Check screen position
+@SCREEN
+D=A 
+@ADDY
+D = M - D
+//ADDY-SCREEN = 0 if at beginning of screen, valued if in the middle of screen
+//Jump back to HOLD if we're at the beginning of screen (less than so we clear the last pixel)
+@HOLD
+D;JLT
+//If keyboard not pressed and we're not at the start: Jump to EMPTY
+@EMPTY
+0;JMP
+
+//WAIT loop: hold screen while at top of screen
+//*******************************************************
+(WAIT)
+//Check screen position
+@KBD
+D = A
+@ADDY
+D = D-M
+//KBD - ADDY = 0 if at end of screen, valued if in the middle of screen
+//Loop to INT if at end of screen
+@INT
+D;JLE
+//Check if keyboard is pressed
+//If keyboard not pressed: jump to EMPTY
+@KBD
+D = M
+@EMPTY
+D;JEQ
+//If keyboard is pressed and we're not at the end: jump to FILL
+@KBD
+D = A
+@ADDY
+D = D-M
+@FILL
+D;JNE
+//Catch case; jump to WAIT if all else fails
 @WAIT
 0;JMP
-//While KBD=0 wait
 
-
-(HOLD)
+//INT loop: check if keyboard pressed, intermediate step for when screen is full
+//******************************************************************************
+(INT)
+//Decide to empty or go back to WAIT:
+//Check if keyboard is pressed
+//If keyboard not pressed: jump to EMPTY
 @KBD
-D=M
+D = M
 @EMPTY
-M=D;JEQ
-//When KBD is empty jump to EMPTY
-
-//************************************compare if at end
-@HOLD
-M=D;JGT
-//While KBD=1 and at the end wait
+D;JEQ
+//Else jump back to WAIT
+@WAIT
+0;JMP
 
 
+//FILL loop: Add a pixel and move to next address
+//******************************************************
 (FILL)
-//start the filling process
-@SCREEN
-//Fill a pixel (set to -1)
+//Jump to current address in screen
+@ADDY
+A = M
+//Fill pixel
+M = -1
 
-//Move 16 bits down
+//Increment through screen:
+@ADDY
+M = M+1
 
-//Check if KBD is still valued AND we've reached the end
-//If still valued and we're still working: come back to FILL
+//Jump back to WAIT: it will check if we're at the end of screen or keyboard pressed
+@WAIT
+0;JMP
 
-//If valued and we're at the end: jump to hold
-
-//If empty: start emptying pixels
-
-
+//EMPTY loop: Clear a pixel and move to next address
+//*****************************************************
 (EMPTY)
-//Start the emptying process
+//Clear current pixel
+@ADDY
+A = M
+M = 0
 
-//Empty a pixel
+//Increment back through screen:
+@ADDY
+M = M-1
 
-//Move a pixel up
-
-//Check if KBD is still unvalued AND if we've reached the end
-//If still unvalued and we're still working: come back to EMPTY
-
-//If still unvalued and we're at the end: jump to WAIT
+//Jump back to HOLD for all checks
+@HOLD
+0;JMP
+//Rewrite in progress

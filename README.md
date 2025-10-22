@@ -71,3 +71,16 @@ Booleans can be used as buses of any width.
 
 ---
 
+<h1>Hack Assembly</h1>
+---
+<h3> Screen syntax: to set pixel (row, col) on or off: </h3>
+```
+word = RAM[16384 + (32*row) + col/16]
+set the (col % 16)th bit of word
+RAM[i] = word
+```
+Credit Stewart Thomas
+
+---
+
+

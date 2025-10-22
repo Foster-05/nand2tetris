@@ -8,10 +8,12 @@
  * The chip facilitates read and write operations, as follows:
  *     Read:  out(t) = Memory[address(t)](t)
  *     Write: if load(t-1) then Memory[address(t-1)](t) = in(t-1)
+ *
  * In words: the chip always outputs the value stored at the memory 
  * location specified by address. If load=1, the in value is loaded 
  * into the memory location specified by address. This value becomes 
  * available through the out output from the next time step onward.
+ *
  * Address space rules:
  * Only the upper 16K+8K+1 words of the Memory chip are used. 
  * Access to address>0x6000 is invalid. Access to any address in 
@@ -25,5 +27,30 @@ CHIP Memory {
     OUT out[16];
 
     PARTS:
-	//// Replace this comment with your code.
+//Read:
+//Test bit 15 for screen or memory: we find 1 if at or above 0x4000 (screen memory), 0 otherwise (ram memory)
+    Mux16(a=ramout, b=screenout, sel=address[14], out=storedout);
+//storedout will hold the output from ram if its a ram address, the output from screen if its a screen address
+
+//When testing for keyboard make sure that both bits 15 and 14 are 1, otherwise we may find errors
+    And(a=address[14], b=address[13], out=kbdeval);
+//Test output for keyboard: It will be 1 if at 0x6000, 0 otherwise:
+    Mux16(a=storedout, b=kbdout, sel=kbdeval, out=out);
+
+
+
+//Write: use load/address previous to write in. Out does not matter, we will output the updated version from the next tick.
+
+//Evaluate bit 15, as above, to find screen or memory:
+//ramload/screenload will be 1 if we're addressing to it, 0 if not
+    Mux(a=false, b=true, sel=address[14], out=screenload);
+    Mux(a=true, b=false, sel=address[14], out=ramload);
+//And with load to make sure we actually want to load
+    And(a=ramload, b=load, out=ramload2);
+    And(a=screenload, b=load, out=screenload2);
+//If load is 1, we will load into the correctly addressed unit, otherwise not load anything
+    RAM16K(in=in, load=ramload2, address=address[0..13], out=ramout);
+    Screen(in=in, load=screenload2, address=address[0..12], out=screenout);
+    Keyboard(out=kbdout);
+
 }

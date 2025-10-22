@@ -32,5 +32,54 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-	//// Replace this comment with your code.
+//Check if A or C instruction, load A if A or d1, load D if d2
+DMux(in=true, sel=instruction[15], a=Ains, b=Cins);
+And(a=Cins, b=instruction[4], out=Dload);
+Or(a=Ains, b=instruction[5], out=Aload);
+
+//Load ALU output or input into A
+Mux16(a=ALUout, b=instruction, sel=Ains, out=Areg);
+ARegister(in=Areg, load=Aload, out[0..14]=addressM, out=Aout);
+// addressM=Aout[0..14]
+
+//Load A or inM into ALU
+Mux16(a=Aout, b=inM, sel=instruction[12], out=ALUmux);
+
+//ALU, controlled with instruction[6..11]
+ALU(x=Dout, y=ALUmux, zx=instruction[11], nx=instruction[10], zy=instruction[9], ny=instruction[8], f=instruction[7], no=instruction[6], out=ALUout, out = outM, zr=zrout, ng=ngout);
+
+//writeM
+And(a=Cins, b=instruction[3], out=writeM);
+//Load ALU output in if C w/ d2
+DRegister(in=ALUout, load=Dload, out=Dout);
+
+//Evaluate jump conditions:
+Or(a=ngout, b=zrout, out=LEQ);
+Not(in=LEQ, out=GT);
+
+And(a=instruction[0], b=GT, out=JGT);
+And(a=instruction[2], b=ngout, out=JLT);
+And(a=instruction[1], b=zrout, out=JEQ);
+
+Or(a=JLT, b=JEQ, out=JLE);
+Or(a=JGT, b=JEQ, out=JGE);
+//true if jumping, false if not
+Or(a=JLE, b=JGE, out=JUMP);
+
+//Check if C tells us to jump
+And(a=JUMP, b=Cins, out=Jload);
+Not(in=Jload, out=notjump);
+//PC
+PC(in=Aout, load=Jload, inc=notjump, reset=reset, out[0..14]=pc);
+// pc=pcout[0..14]
+
+/** Parts specified by diagram
+    Mux16(a=instruction[0..14], b=Dout, sel=, out=mux1out);
+    ARegister(in=mux1out, load=, out=nextinstruction);
+    nextinstruction = addressM
+    Mux16(a=nextinstruction, b=inM, sel=, out=mux2out);
+    ALU(x=Dout, y=mux2out, zx=, nx=, zy=, ny=, f=, no=, out=ALUout, zr=, ng=);
+    DRegister(in=ALUout, load=, out=Dout);
+    ALUout = outM
+*/
 }
