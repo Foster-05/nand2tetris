@@ -6,7 +6,7 @@ class VMTranslator:
         self.outputfile = self.handleFile(inputfile)
         self.f = open(self.outputfile, 'a')
         
-        locationdir = {
+        self.locationdir = {
             'local':"LCL",
             'argument':"ARG",
             'this':"THIS",
@@ -33,8 +33,7 @@ class VMTranslator:
     def handleFile(self, inputfile):
         #Handle file vs file in directory
         if os.path.isdir(inputfile):
-            print('dir')
-            self.normDirName = os.path.normpath(dir)
+            self.normDirName = os.path.normpath(inputfile)
             [self.path, self.name] = os.path.split(normDirName)
             self.outputfile = os.path.join(path, name, name + ".asm")
             return self.outputfile
@@ -58,8 +57,8 @@ class VMTranslator:
             index = int(index)
         except:
             print('unable to split command')
-        if segment in locationdir:
-            location = locationdir[segment]
+        if segment in self.locationdir:
+            location = self.locationdir[segment]
             if type == 'push':
                 self.pushValue(location, index)
             else:
@@ -124,7 +123,7 @@ class VMTranslator:
             self.f.write("M=M+1" + "\n")
             print("pushed")
             
-    def pushValue(self, location, offestin):
+    def pushValue(self, location, offsetin):
             #Addr = location + i, store in R13
             self.f.write("@" + location + "\n")
             self.f.write("A=M" + "\n")
