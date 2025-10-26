@@ -5,6 +5,7 @@ class VMTranslator:
     def __init__(self, inputfile):
         self.outputfile = self.handleFile(inputfile)
         self.f = open(self.outputfile, 'a')
+        
         locationdir = {
             'local':"LCL",
             'argument':"ARG",
@@ -36,11 +37,11 @@ class VMTranslator:
             self.normDirName = os.path.normpath(dir)
             [self.path, self.name] = os.path.split(normDirName)
             self.outputfile = os.path.join(path, name, name + ".asm")
-            return os.path.join(path, name, name + ".asm")
+            return self.outputfile
         else:
             print('file')
             self.outputfile = inputfile.replace(".vm", ".asm")
-            return inputfile.replace(".vm", ".asm")
+            return self.outputfile
 
     def cleanLine(self, CurrLine):
             # remove line endings
@@ -50,20 +51,54 @@ class VMTranslator:
             line = line.split("//")[0].strip()
             return line
         
-    def handleCommand(self, command):
+    def handlePushPop(self, command, type):
+        #Determines memory segments etc
         try:
             segment, index = command.split(" ")
+            index = int(index)
         except:
             print('unable to split command')
         if segment in locationdir:
-            outcommand = locationdir[segment]
+            location = locationdir[segment]
+            if type == 'push':
+                self.pushValue(location, index)
+            else:
+                self.pop(location, index)
+                
+        elif segment == 'pointer':
+            if index == 1:
+                location = 'THAT'
+            elif index == 0:
+                location = 'THIS'
+            else:
+                print('pointer offest failed')
+                
+            if type == 'push':
+                self.pushValue(location, 0)
+            else:
+                self.pop(location, 0)
+                
+        elif segment == 'constant':
+            self.f.write('@' + index + "\n")
+            self.f.write('D=A' + "\n")
+            #Only pushes
+            self.pushD()
+        elif segment == 'static':
+            staticvar = self.outputfile + "." + str(index)
+            self.f.write('@' + staticvar + "\n")
+            self.f.write('D=A' + "\n")
+            if type == 'push':
+                self.pushD()
+            else:
+                self.pop(staticvar, 0)
         else:
+            print('unrecognized segment')
             
 ###############################################################################        
         #Push-pop
     def popD(self, location, offsetin):
         #Where location will already be a defined @XXX value and offsetin is an integer
-            #Addr = local + i, store in R13
+            #Addr = location + i, store in R13
             self.f.write("@" + location + "\n")
             self.f.write("A=M" + "\n")
             self.offset(offsetin)
@@ -90,7 +125,13 @@ class VMTranslator:
             print("pushed")
             
     def pushValue(self, location, offestin):
-        
+            #Addr = location + i, store in R13
+            self.f.write("@" + location + "\n")
+            self.f.write("A=M" + "\n")
+            self.offset(offsetin)
+            #Read value @ location + offset
+            self.f.write("D=M" + "\n")
+            self.pushD()
 ###################################################################################
         #Arithmetic-Logical commands
 
