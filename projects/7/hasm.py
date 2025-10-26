@@ -6,20 +6,20 @@ translator = VMTranslator(sys.argv[1])
 translator.LogicNot()
 translator.gt()
 #Open file
-# 
-# with open(sys.argv[1], 'r') as f:
-#     for line in f:
-#         CurrLine = line
-#         CleanLine()
-#         if CurrLine != "":
-#             if CurrLine[0] != "(":
-#                 ROMAddress += 1
-#             elif CurrLine[0] == "(":
-#                 Sym = CurrLine.split("(")[1].split(")")[0]
-#                 symboltranslator.addEntry(Sym, ROMAddress)
-#                 
 
-
+with open(sys.argv[1], 'r') as f:
+    for line in f:
+        CurrLine = line
+        CurrLine = cleanLine(CurrLine)
+        if CurrLine != "":
+            if CurrLine[0:2] == "pop":
+                #Handle pop
+                command = CurrLine.split("pop ")[1]
+                translator.handleCommand(command)
+                a
+            elif  CurrLine[0:3] == "push":
+                #Handle push
+                command = CurrLine.split("push ")[1]
 
 
 

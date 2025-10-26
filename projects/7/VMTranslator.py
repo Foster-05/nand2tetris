@@ -10,7 +10,7 @@ class VMTranslator:
             'argument':"ARG",
             'this':"THIS",
             'that':"THAT",
-            
+            'temp':'R5'
             }
         #Create (EQUAL) subroutine
         self.f.write("(EQUAL)" + "\n")
@@ -27,8 +27,8 @@ class VMTranslator:
         self.f.write("@0" + "\n")
         self.f.write("D=A" + "\n")
         self.pushD()
-        #Needs to jump back to previous location
         
+##############################################################################
     def handleFile(self, inputfile):
         #Handle file vs file in directory
         if os.path.isdir(inputfile):
@@ -42,6 +42,23 @@ class VMTranslator:
             self.outputfile = inputfile.replace(".vm", ".asm")
             return inputfile.replace(".vm", ".asm")
 
+    def cleanLine(self, CurrLine):
+            # remove line endings
+            line = CurrLine.strip()
+            # remove comments -- split the line at the first comment character
+            #                    and only keep leftmost portion
+            line = line.split("//")[0].strip()
+            return line
+        
+    def handleCommand(self, command):
+        try:
+            segment, index = command.split(" ")
+        except:
+            print('unable to split command')
+        if segment in locationdir:
+            outcommand = locationdir[segment]
+        else:
+            
 ###############################################################################        
         #Push-pop
     def popD(self, location, offsetin):
@@ -71,7 +88,9 @@ class VMTranslator:
             self.f.write("@SP" + "\n")
             self.f.write("M=M+1" + "\n")
             print("pushed")
-
+            
+    def pushValue(self, location, offestin):
+        
 ###################################################################################
         #Arithmetic-Logical commands
 
