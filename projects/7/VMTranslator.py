@@ -2,8 +2,27 @@
 import os
 
 class VMTranslator:
-    def __init__(self, inputfile):
-        self.outputfile = self.handleFile(inputfile)
+##############################################################################
+    def handle(self, inputfile):
+        #Handle file vs file in directory
+        if os.path.isdir(inputfile):
+            self.normDirName = os.path.normpath(inputfile)
+            [self.path, self.name] = os.path.split(self.normDirName)
+            self.outputfile = os.path.join(self.path, self.name, self.name + ".asm")
+            self.init()
+            for f in os.listdir(inputfile):
+                if f.endswith('.vm'):
+                    print(f'Processing {f}')
+                    VMName = os.path.join(inputfile, f)
+                    self.Process(VMName)
+        else:
+            print('file')
+            self.outputfile = inputfile.replace(".vm", ".asm")
+            self.init()
+            self.Process(inputfile)
+
+    def init(self):
+        #this needs to be separate i swear
         self.f = open(self.outputfile, 'a')
         
         self.locationdir = {
@@ -13,35 +32,45 @@ class VMTranslator:
             'that':"THAT",
             'temp':'R5'
             }
-        #Create (EQUAL) subroutine
-        self.f.write("(EQUAL)" + "\n")
-        self.f.write("@0" + "\n")
-        self.f.write("D=A" + "\n")
-        self.pushD()
-        #Create (GT) subroutine
-        self.f.write("(GT)" + "\n")
-        self.f.write("@0" + "\n")
-        self.f.write("D=A" + "\n")
-        self.pushD()
-        #Create (LT) subroutine
-        self.f.write("(LT)" + "\n")
-        self.f.write("@0" + "\n")
-        self.f.write("D=A" + "\n")
-        self.pushD()
         
-##############################################################################
-    def handleFile(self, inputfile):
-        #Handle file vs file in directory
-        if os.path.isdir(inputfile):
-            self.normDirName = os.path.normpath(inputfile)
-            [self.path, self.name] = os.path.split(normDirName)
-            self.outputfile = os.path.join(path, name, name + ".asm")
-            return self.outputfile
-        else:
-            print('file')
-            self.outputfile = inputfile.replace(".vm", ".asm")
-            return self.outputfile
-
+        self.symbolCount = 0
+        
+    def Process(self, file):
+        with open(file, 'r') as f:
+            for line in f:
+                CurrLine = line
+                CurrLine = self.cleanLine(CurrLine)
+                if CurrLine != "":
+                    if CurrLine[0:2] == "pop":
+                        #Handle pop
+                        command = CurrLine.split("pop ")[1]
+                        self.handlePushPop(command, 'pop')
+                        
+                    elif  CurrLine[0:3] == "push":
+                        #Handle push
+                        command = CurrLine.split("push ")[1]
+                        self.handlePushPop(command, 'push')
+                    elif CurrLine == 'and':
+                        self.LogicAnd()
+                    elif CurrLine == 'or':
+                        self.LogicOr()
+                    elif CurrLine == 'not':
+                        self.LogicNot()
+                    elif CurrLine == 'add':
+                        #Other arithmetic logic instructions
+                        self.add()
+                    elif CurrLine == 'sub':
+                        self.sub()
+                    elif CurrLine == 'neg':
+                        self.neg()
+                    elif CurrLine == 'eq':
+                        self.eq()    
+                    elif CurrLine == 'gt':
+                        self.gt()
+                    elif CurrLine == 'lt':
+                        self.lt()
+        ################################################################################3
+        
     def cleanLine(self, CurrLine):
             # remove line endings
             line = CurrLine.strip()
@@ -113,7 +142,6 @@ class VMTranslator:
             self.f.write("@R13" + "\n")
             self.f.write("A=M" + "\n")
             self.f.write("M=D" + "\n")
-            print('popped')
         
     def pushD(self):
             self.f.write("@SP" + "\n")
@@ -121,7 +149,6 @@ class VMTranslator:
             self.f.write("M=D" + "\n")
             self.f.write("@SP" + "\n")
             self.f.write("M=M+1" + "\n")
-            print("pushed")
             
     def pushValue(self, location, offsetin):
             #Addr = location + i, store in R13
@@ -174,12 +201,23 @@ class VMTranslator:
             self.f.write("@R14" + "\n")
             self.f.write("D=D-M" + "\n")
             #D=0 if equal, valued if not
-            self.f.write("@EQUAL" + "\n")
+            self.f.write("@ETrue" + str(self.symbolCount) +"" + "\n")
             self.f.write("D;JEQ" + "\n")
-            #If valued, push false
-            self.f.write("@-1" + "\n") #Does this work?
-            self.f.write("D=A" + "\n")
+            #If greater than, jump past false and push true
+            #If less than, push false
+            self.f.write("D=0" + "\n")
             self.pushD()
+            self.f.write("@EFalse" + str(self.symbolCount) +"" + "\n")
+            self.f.write("D;JMP" + "\n")
+            #Always jump because we wrote
+            #Create unique symbols that will skip the "true" write if false
+            self.f.write("(ETrue" + str(self.symbolCount) +")" + "\n")
+            #Write true
+            self.f.write("D=-1" + "\n")
+            self.pushD()
+            self.f.write("(EFalse" + str(self.symbolCount) +")" + "\n")
+            #Empty, we wrote previously
+            self.symbolCount += 1
         
     def gt(self):
         #Determines if two most recent values on the stack, x>y and pushes back true (-1) or false (0)
@@ -192,13 +230,23 @@ class VMTranslator:
             #x-y
             self.f.write("D=D-M" + "\n")
             #D>0 if gt, negative if not
-            self.f.write("@GT" + "\n")
+            self.f.write("@GTrue" + str(self.symbolCount) +"" + "\n")
             self.f.write("D;JGT" + "\n")
-            #If valued, push false
-            self.f.write("@-1" + "\n") #Does this work?
-            self.f.write("D=A" + "\n")
+            #If greater than, jump past false and push true
+            #If less than, push false
+            self.f.write("D=0" + "\n")
             self.pushD()
-    
+            self.f.write("@GFalse" + str(self.symbolCount) +"" + "\n")
+            self.f.write("D;JMP" + "\n")
+            #Always jump because we wrote
+            #Create unique symbols that will skip the "true" write if false
+            self.f.write("(GTrue" + str(self.symbolCount) +")" + "\n")
+            #Write true
+            self.f.write("D=-1" + "\n")
+            self.pushD()
+            self.f.write("(GFalse" + str(self.symbolCount) +")" + "\n")
+            #Empty, we wrote previously
+            self.symbolCount += 1
     def lt(self):
         #Determines if two most recent values on the stack, x<y and pushes back true (-1) or false (0)
         #y is the most recent item on the stack, popped to R13
@@ -210,12 +258,23 @@ class VMTranslator:
             #y-x
             self.f.write("D=D-M" + "\n")
             #D>0 if lt, negative if not
-            self.f.write("@LT" + "\n")
+            self.f.write("@LTrue" + str(self.symbolCount) +"" + "\n")
             self.f.write("D;JGT" + "\n")
-            #If valued, push false
-            self.f.write("@-1" + "\n") #Does this work?
-            self.f.write("D=A" + "\n")
+            #If greater than, jump past false and push true
+            #If less than, push false
+            self.f.write("D=0" + "\n")
             self.pushD()
+            self.f.write("@LFalse" + str(self.symbolCount) +"" + "\n")
+            self.f.write("D;JMP" + "\n")
+            #Always jump because we wrote
+            #Create unique symbols that will skip the "true" write if false
+            self.f.write("(LTrue" + str(self.symbolCount) +")" + "\n")
+            #Write true
+            self.f.write("D=-1" + "\n")
+            self.pushD()
+            self.f.write("(LFalse" + str(self.symbolCount) +")" + "\n")
+            #Empty, we wrote previously
+            self.symbolCount += 1
         
     def LogicAnd(self):
         #Computes bitwise AND of x,y and pushes back to stack
@@ -247,3 +306,6 @@ class VMTranslator:
             #!y
             self.f.write("D=!D" + "\n")
             self.pushD()
+            
+    ##################################################################################################
+
