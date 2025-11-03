@@ -3,5 +3,4 @@ class Main{
 		do Output.printString("digdug lol");
 		return;
 }
-
 }
