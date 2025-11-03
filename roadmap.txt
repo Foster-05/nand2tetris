@@ -2,14 +2,15 @@ roadmap ts
 starting goal: dig around screen
 
 core game:
+for now 16x16 sprites
 
-dug:
+dug: eli
     -dig
     -move
-tiles:
+tiles: gabe
     -import
     -tilemap for air, dirt, rocks
-draw to screen
+draw to screen: eli
 gameloop:
     -update player position
     -update tiles
@@ -23,3 +24,4 @@ fun stuff:
 -scoring
 -timing
 -blowup attack
+-lives

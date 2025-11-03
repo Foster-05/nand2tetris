@@ -71,6 +71,7 @@ class VMTranslator:
                         self.gt()
                     elif CurrLine == 'lt':
                         self.lt()
+            #concerning for multiple files...
             self.f.write("(END)" + "\n")
             self.f.write("@END" + "\n")
             self.f.write("0;JMP" + "\n")
