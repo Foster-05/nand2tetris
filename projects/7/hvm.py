@@ -5,8 +5,3 @@ import sys
 translator = VMTranslator()
 #Open file
 translator.handle(sys.argv[1])
-
-
-
-#TODO:
-#figure out how to jump back after subroutine calls

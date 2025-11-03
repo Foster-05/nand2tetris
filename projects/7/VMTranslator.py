@@ -20,6 +20,7 @@ class VMTranslator:
             self.outputfile = inputfile.replace(".vm", ".asm")
             self.init()
             self.Process(inputfile)
+        self.f.close()
 
     def init(self):
         #this needs to be separate i swear
@@ -30,7 +31,6 @@ class VMTranslator:
             'argument':"ARG",
             'this':"THIS",
             'that':"THAT",
-            'temp':'R5'
             }
         
         self.symbolCount = 0
@@ -40,14 +40,16 @@ class VMTranslator:
             for line in f:
                 CurrLine = line
                 CurrLine = self.cleanLine(CurrLine)
+                print(CurrLine)
                 if CurrLine != "":
-                    if CurrLine[0:2] == "pop":
+                    if CurrLine[0:3] == "pop":
                         #Handle pop
                         command = CurrLine.split("pop ")[1]
                         self.handlePushPop(command, 'pop')
                         
-                    elif  CurrLine[0:3] == "push":
+                    elif  CurrLine[0:4] == "push":
                         #Handle push
+                        print('push!')
                         command = CurrLine.split("push ")[1]
                         self.handlePushPop(command, 'push')
                     elif CurrLine == 'and':
@@ -69,6 +71,9 @@ class VMTranslator:
                         self.gt()
                     elif CurrLine == 'lt':
                         self.lt()
+            self.f.write("(END)" + "\n")
+            self.f.write("@END" + "\n")
+            self.f.write("0;JMP" + "\n")
         ################################################################################3
         
     def cleanLine(self, CurrLine):
@@ -84,6 +89,8 @@ class VMTranslator:
         try:
             segment, index = command.split(" ")
             index = int(index)
+            print(segment)
+            print(index)
         except:
             print('unable to split command')
         if segment in self.locationdir:
@@ -91,7 +98,15 @@ class VMTranslator:
             if type == 'push':
                 self.pushValue(location, index)
             else:
-                self.pop(location, index)
+                self.popD(location, index)
+                
+        elif segment == 'temp':
+            tempaddress = index + 5
+            location = "R"+str(tempaddress)
+            if type == 'push':
+                self.pushDirect(location, 0)
+            else:
+                self.popToRegister(location)
                 
         elif segment == 'pointer':
             if index == 1:
@@ -102,23 +117,24 @@ class VMTranslator:
                 print('pointer offest failed')
                 
             if type == 'push':
-                self.pushValue(location, 0)
+                self.pushDirect(location, 0)
             else:
-                self.pop(location, 0)
+                self.popToRegister(location)
                 
         elif segment == 'constant':
-            self.f.write('@' + index + "\n")
+            print('constant!')
+            self.f.write('@' + str(index) + "\n")
             self.f.write('D=A' + "\n")
             #Only pushes
             self.pushD()
         elif segment == 'static':
-            staticvar = self.outputfile + "." + str(index)
+            staticvar = os.path.basename(self.outputfile) + "." + str(index)
             self.f.write('@' + staticvar + "\n")
-            self.f.write('D=A' + "\n")
+            self.f.write('D=M' + "\n")
             if type == 'push':
                 self.pushD()
             else:
-                self.pop(staticvar, 0)
+                self.popToRegister(staticvar)
         else:
             print('unrecognized segment')
             
@@ -128,6 +144,7 @@ class VMTranslator:
         #Where location will already be a defined @XXX value and offsetin is an integer
             #Addr = location + i, store in R13
             self.f.write("@" + location + "\n")
+            #Grab address stored in location, base address of memory segment
             self.f.write("A=M" + "\n")
             self.offset(offsetin)
             self.f.write("D=A" + "\n")
@@ -138,11 +155,21 @@ class VMTranslator:
             self.f.write("@SP" + "\n")
             self.f.write("M=M-1" + "\n")
             #Addr = SP
+            self.f.write("A=M" + "\n")
             self.f.write("D=M" + "\n")
             self.f.write("@R13" + "\n")
             self.f.write("A=M" + "\n")
             self.f.write("M=D" + "\n")
-        
+            
+    def popToRegister(self, register):
+        #get value from stack into a register
+        self.f.write("@SP" + "\n")
+        self.f.write("M=M-1" + "\n")
+        self.f.write("A=M" + "\n")
+        self.f.write("D=M" + "\n")
+        self.f.write("@" + register + "\n")
+        self.f.write("M=D" + "\n")
+            
     def pushD(self):
             self.f.write("@SP" + "\n")
             self.f.write("A=M" + "\n")
@@ -158,6 +185,15 @@ class VMTranslator:
             #Read value @ location + offset
             self.f.write("D=M" + "\n")
             self.pushD()
+            
+    def pushDirect(self, location, offsetin):
+            #Addr = location + i, store in R13
+            self.f.write("@" + location + "\n")
+            #self.f.write("A=M" + "\n") Don't use location inside!
+            self.offset(offsetin)
+            #Read value @ location + offset
+            self.f.write("D=M" + "\n")
+            self.pushD()
 ###################################################################################
         #Arithmetic-Logical commands
 
@@ -167,8 +203,8 @@ class VMTranslator:
         
     def add(self):
         #Pops two most recent values off the stack, adds, and pushes back on
-            self.popD('R13', 0)
-            self.popD('R14', 0)
+            self.popToRegister('R13')
+            self.popToRegister('R14')
             self.f.write("@R13" + "\n")
             self.f.write("D=M" + "\n")
             self.f.write("@R14" + "\n")
@@ -177,25 +213,25 @@ class VMTranslator:
         
     def sub(self):
         #Pops two most recent values off the stack, subtracts, and pushes back on
-            self.popD('R13', 0)
-            self.popD('R14', 0)
+            self.popToRegister('R13')
+            self.popToRegister('R14')
             self.f.write("@R13" + "\n")
             self.f.write("D=M" + "\n")
             self.f.write("@R14" + "\n")
-            self.f.write("D=D-M" + "\n")
+            self.f.write("D=M-D" + "\n")
             self.pushD()
         
     def neg(self):
             #Arithmetic negation
-            self.popD('R13', 0)
+            self.popToRegister('R13')
             self.f.write("@R13" + "\n")
             self.f.write("D=-M" + "\n")
             self.pushD()
         
     def eq(self):
         #Determines if two most recent values on the stack are equal and pushes back true (-1) or false (0)
-            self.popD('R13', 0)
-            self.popD('R14', 0)
+            self.popToRegister('R13')
+            self.popToRegister('R14')
             self.f.write("@R13" + "\n")
             self.f.write("D=M" + "\n")
             self.f.write("@R14" + "\n")
@@ -222,8 +258,8 @@ class VMTranslator:
     def gt(self):
         #Determines if two most recent values on the stack, x>y and pushes back true (-1) or false (0)
         #y is the most recent item on the stack, popped to R13
-            self.popD('R13', 0)
-            self.popD('R14', 0)
+            self.popToRegister('R13')
+            self.popToRegister('R14')
             self.f.write("@R14" + "\n")
             self.f.write("D=M" + "\n")
             self.f.write("@R13" + "\n")
@@ -250,8 +286,8 @@ class VMTranslator:
     def lt(self):
         #Determines if two most recent values on the stack, x<y and pushes back true (-1) or false (0)
         #y is the most recent item on the stack, popped to R13
-            self.popD('R13', 0)
-            self.popD('R14', 0)
+            self.popToRegister('R13')
+            self.popToRegister('R14')
             self.f.write("@R13" + "\n")
             self.f.write("D=M" + "\n")
             self.f.write("@R14" + "\n")
@@ -278,8 +314,8 @@ class VMTranslator:
         
     def LogicAnd(self):
         #Computes bitwise AND of x,y and pushes back to stack
-            self.popD('R13', 0)
-            self.popD('R14', 0)
+            self.popToRegister('R13')
+            self.popToRegister('R14')
             self.f.write("@R13" + "\n")
             self.f.write("D=M" + "\n")
             self.f.write("@R14" + "\n")
@@ -288,8 +324,8 @@ class VMTranslator:
             self.pushD()
     def LogicOr(self):
         #Computes bitwise OR of x,y and pushes back to stack
-            self.popD('R13', 0)
-            self.popD('R14', 0)
+            self.popToRegister('R13')
+            self.popToRegister('R14')
             self.f.write("@R13" + "\n")
             self.f.write("D=M" + "\n")
             self.f.write("@R14" + "\n")
@@ -298,13 +334,10 @@ class VMTranslator:
             self.pushD()
     def LogicNot(self):
         #Computes bitwise NOT of y and pushes back to stack
-            self.popD('R13', 0)
-            self.popD('R14', 0)
+            self.popToRegister('R13')
             self.f.write("@R13" + "\n")
-            self.f.write("D=M" + "\n")
-            self.f.write("@R14" + "\n")
+            self.f.write("D=!M" + "\n")
             #!y
-            self.f.write("D=!D" + "\n")
             self.pushD()
             
     ##################################################################################################
