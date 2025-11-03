@@ -1,0 +1,25 @@
+roadmap ts
+starting goal: dig around screen
+
+core game:
+
+dug:
+    -dig
+    -move
+tiles:
+    -import
+    -tilemap for air, dirt, rocks
+draw to screen
+gameloop:
+    -update player position
+    -update tiles
+
+
+
+fun stuff:
+-good sprites
+-enemies w/ pathfinding
+-tilemap generation
+-scoring
+-timing
+-blowup attack
