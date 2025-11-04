@@ -1,0 +1,62 @@
+class Playfield{
+	function void updateDirt(){
+        // Updates entire screen of dirt from current tilemap
+		// Shouldn't have to call frequently, ideally we update single tiles surrounding player
+
+		//for block in tilemap, updateDirt
+		return;
+}
+	function void updateRocks(){
+        // Updates entire screen of rocks from current tilemap
+		// Shouldn't have to call frequently, ideally we update single tiles surrounding player
+		return;
+}
+	function bool checkFilled(direction){
+		// When moving in a direction, checks if square is filled or not based on current position in tilemap
+		return;
+	}
+	function void updateDirt(x,y){
+        // Updates tiles surrounding player (x,y) from current tilemap
+
+		do Playfield.drawDirt(x,y+1)
+		do Playfield.drawDirt(x+1,y)
+		do Playfield.drawDirt(x,y-1)
+		do Playfield.drawDirt(x-1,y)
+		return;
+}
+	function void drawDirt(){
+        // Draws a square full of dirt
+
+		//Fill w/ dirt pattern
+		do Playfield.updateTopBoundary(x,y)
+		do Playfield.updateBottomBoundary(x,y)
+		do Playfield.updateLeftBoundary(x,y)
+		do Playfield.updateRightBoundary(x,y)
+		return;
+}
+	function void drawRock(x, y){
+        // Draws a rock over an existing square
+		return;
+}
+	function void updateTopBoundary(x, y){
+        // Checks if tile above is empty or full and draws appropriately
+		return;
+}
+	function void updateBottomBoundary(x, y){
+        // Checks if tile below is empty or full and draws appropriately
+		return;
+}
+	function void updateLeftBoundary(x, y){
+        // Checks if tile to the left is empty or full and draws appropriately
+		return;
+}
+	function void updateRightBoundary(x, y){
+        // Checks if tile to the right is empty or full and draws appropriately
+		return;
+}
+	function bool checkTile(x, y){
+        // Checks if arbitrary tile is empty or full
+		return;
+}
+
+}

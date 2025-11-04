@@ -1,0 +1,17 @@
+class Dug{
+    function void drawDug(){
+        //Draws character, stationary for now- implement directions later
+        return;
+    }
+
+    function void move(positionx, positiony, direction){
+        //Moves from position in direction
+        return;
+    }
+
+    function void attack(positionx, positiony, direction){
+        //To be implemented later: attacks in direction character is pointing
+    }
+
+
+}
