@@ -1,7 +1,6 @@
 class Playfield{
-	function void updateDirt(){
+	constructor Playfield new(){
         // Updates entire screen of dirt from current tilemap
-		// Shouldn't have to call frequently, ideally we update single tiles surrounding player
 
 		//for block in tilemap, updateDirt
 		return;
@@ -11,9 +10,9 @@ class Playfield{
 		// Shouldn't have to call frequently, ideally we update single tiles surrounding player
 		return;
 }
-	function bool checkFilled(direction){
+	function boolean checkFilled(direction){
 		// When moving in a direction, checks if square is filled or not based on current position in tilemap
-		return;
+		return bool;
 	}
 	function void updateDirt(x,y){
         // Updates tiles surrounding player (x,y) from current tilemap
@@ -59,4 +58,8 @@ class Playfield{
 		return;
 }
 
+	method void dispose(){
+		do Memory.deAlloc(this);
+		return;
+	}
 }
