@@ -15,43 +15,113 @@ class Playfield{
 		return bool;
 	}
 	function void updateDirt(x,y){
-        // Updates tiles surrounding player (x,y) from current tilemap
+        // Updates tiles player moves into (x,y) from current tilemap
 
-		do Playfield.drawDirt(x,y+1)
-		do Playfield.drawDirt(x+1,y)
-		do Playfield.drawDirt(x,y-1)
-		do Playfield.drawDirt(x-1,y)
 		return;
 }
-	function void drawDirt(){
-        // Draws a square full of dirt
-
-		//Fill w/ dirt pattern
-		do Playfield.updateTopBoundary(x,y)
-		do Playfield.updateBottomBoundary(x,y)
-		do Playfield.updateLeftBoundary(x,y)
-		do Playfield.updateRightBoundary(x,y)
-		return;
+function void drawDirtFull(int location) {
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 512);
+	do Memory.poke(memAddress+32, 1);
+	do Memory.poke(memAddress+64, 16400);
+	do Memory.poke(memAddress+96, 0);
+	do Memory.poke(memAddress+128, 1024);
+	do Memory.poke(memAddress+160, 8);
+	do Memory.poke(memAddress+192, 0);
+	do Memory.poke(memAddress+224, 128);
+	do Memory.poke(memAddress+256, 8196);
+	do Memory.poke(memAddress+288, 0);
+	do Memory.poke(memAddress+320, 32);
+	do Memory.poke(memAddress+352, 4097);
+	do Memory.poke(memAddress+384, 256);
+	do Memory.poke(memAddress+416, 8);
+	do Memory.poke(memAddress+448, 0);
+	do Memory.poke(memAddress+480, 2116);
+	return;
 }
 	function void drawRock(x, y){
         // Draws a rock over an existing square
 		return;
 }
-	function void updateTopBoundary(x, y){
-        // Checks if tile above is empty or full and draws appropriately
-		return;
+function void drawDirtTopOpen(int location) {
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, -29597);
+	do Memory.poke(memAddress+32, 29597);
+	do Memory.poke(memAddress+64, 16400);
+	do Memory.poke(memAddress+96, 0);
+	do Memory.poke(memAddress+128, 1024);
+	do Memory.poke(memAddress+160, 8);
+	do Memory.poke(memAddress+192, 0);
+	do Memory.poke(memAddress+224, 128);
+	do Memory.poke(memAddress+256, 8196);
+	do Memory.poke(memAddress+288, 0);
+	do Memory.poke(memAddress+320, 32);
+	do Memory.poke(memAddress+352, 4097);
+	do Memory.poke(memAddress+384, 256);
+	do Memory.poke(memAddress+416, 8);
+	do Memory.poke(memAddress+448, 0);
+	do Memory.poke(memAddress+480, 2116);
+	return;
 }
-	function void updateBottomBoundary(x, y){
-        // Checks if tile below is empty or full and draws appropriately
-		return;
+function void drawDirtBottomOpen(int location) {
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 512);
+	do Memory.poke(memAddress+32, 1);
+	do Memory.poke(memAddress+64, 16400);
+	do Memory.poke(memAddress+96, 0);
+	do Memory.poke(memAddress+128, 1024);
+	do Memory.poke(memAddress+160, 8);
+	do Memory.poke(memAddress+192, 0);
+	do Memory.poke(memAddress+224, 128);
+	do Memory.poke(memAddress+256, 8196);
+	do Memory.poke(memAddress+288, 0);
+	do Memory.poke(memAddress+320, 32);
+	do Memory.poke(memAddress+352, 4097);
+	do Memory.poke(memAddress+384, 256);
+	do Memory.poke(memAddress+416, 8);
+	do Memory.poke(memAddress+448, 14798);
+	do Memory.poke(memAddress+480, -14799);
+	return;
 }
-	function void updateLeftBoundary(x, y){
-        // Checks if tile to the left is empty or full and draws appropriately
-		return;
+function void drawDirtLeftOpen(int location) {
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 513);
+	do Memory.poke(memAddress+32, 1);
+	do Memory.poke(memAddress+64, 16402);
+	do Memory.poke(memAddress+96, 2);
+	do Memory.poke(memAddress+128, 1026);
+	do Memory.poke(memAddress+160, 9);
+	do Memory.poke(memAddress+192, 1);
+	do Memory.poke(memAddress+224, 130);
+	do Memory.poke(memAddress+256, 8194);
+	do Memory.poke(memAddress+288, 2);
+	do Memory.poke(memAddress+320, 33);
+	do Memory.poke(memAddress+352, 4097);
+	do Memory.poke(memAddress+384, 258);
+	do Memory.poke(memAddress+416, 10);
+	do Memory.poke(memAddress+448, 2);
+	do Memory.poke(memAddress+480, 2113);
+	return;
 }
-	function void updateRightBoundary(x, y){
-        // Checks if tile to the right is empty or full and draws appropriately
-		return;
+function void drawDirtFull(int location) {
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, -32256);
+	do Memory.poke(memAddress+32, -32767);
+	do Memory.poke(memAddress+64, 16400);
+	do Memory.poke(memAddress+96, 16384);
+	do Memory.poke(memAddress+128, 17408);
+	do Memory.poke(memAddress+160, -32760);
+	do Memory.poke(memAddress+192, -32768);
+	do Memory.poke(memAddress+224, 16512);
+	do Memory.poke(memAddress+256, 24580);
+	do Memory.poke(memAddress+288, 16384);
+	do Memory.poke(memAddress+320, -32736);
+	do Memory.poke(memAddress+352, -28671);
+	do Memory.poke(memAddress+384, 16640);
+	do Memory.poke(memAddress+416, 16392);
+	do Memory.poke(memAddress+448, 16384);
+	do Memory.poke(memAddress+480, -30652);
+	return;
 }
 	function bool checkTile(x, y){
         // Checks if arbitrary tile is empty or full
