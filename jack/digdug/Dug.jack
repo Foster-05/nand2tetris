@@ -1,9 +1,88 @@
 class Dug{
-    function void drawDug(){
-        //Draws character, stationary for now- implement directions later
+    function void drawDugLeft(){
+        //Draws character looking left
+                let memAddress = 16384+location;
+                do Memory.poke(memAddress+0, 0);
+                do Memory.poke(memAddress+32, 192);
+                do Memory.poke(memAddress+64, 240);
+                do Memory.poke(memAddress+96, 1016);
+                do Memory.poke(memAddress+128, 4092);
+                do Memory.poke(memAddress+160, 2654);
+                do Memory.poke(memAddress+192, 2078);
+                do Memory.poke(memAddress+224, 2030);
+                do Memory.poke(memAddress+256, 414);
+                do Memory.poke(memAddress+288, 996);
+                do Memory.poke(memAddress+320, 2020);
+                do Memory.poke(memAddress+352, 1806);
+                do Memory.poke(memAddress+384, 1820);
+                do Memory.poke(memAddress+416, 1022);
+                do Memory.poke(memAddress+448, 390);
+                do Memory.poke(memAddress+480, 1950);
         return;
     }
-
+    function void drawDugRight(){
+        //Draws character,looking right
+                let memAddress = 16384+location;
+                do Memory.poke(memAddress+0, 0);
+                do Memory.poke(memAddress+32, 192);
+                do Memory.poke(memAddress+64, 240);
+                do Memory.poke(memAddress+96, 1016);
+                do Memory.poke(memAddress+128, 4092);
+                do Memory.poke(memAddress+160, 2654);
+                do Memory.poke(memAddress+192, 2078);
+                do Memory.poke(memAddress+224, 2030);
+                do Memory.poke(memAddress+256, 414);
+                do Memory.poke(memAddress+288, 996);
+                do Memory.poke(memAddress+320, 2020);
+                do Memory.poke(memAddress+352, 1806);
+                do Memory.poke(memAddress+384, 1820);
+                do Memory.poke(memAddress+416, 1022);
+                do Memory.poke(memAddress+448, 390);
+                do Memory.poke(memAddress+480, 1950);
+        return;
+    }
+    function void drawDugUp(){
+        //Draws character, looking up
+                let memAddress = 16384+location;
+                do Memory.poke(memAddress+0, 0);
+                do Memory.poke(memAddress+32, 0);
+                do Memory.poke(memAddress+64, 0);
+                do Memory.poke(memAddress+96, 0);
+                do Memory.poke(memAddress+128, 3584);
+                do Memory.poke(memAddress+160, 2361);
+                do Memory.poke(memAddress+192, 7549);
+                do Memory.poke(memAddress+224, 6655);
+                do Memory.poke(memAddress+256, 31207);
+                do Memory.poke(memAddress+288, 32100);
+                do Memory.poke(memAddress+320, 14692);
+                do Memory.poke(memAddress+352, 16013);
+                do Memory.poke(memAddress+384, 8093);
+                do Memory.poke(memAddress+416, 4087);
+                do Memory.poke(memAddress+448, 1943);
+                do Memory.poke(memAddress+480, 0);
+        return;
+    }
+    function void drawDugDown(){
+        //Draws character, looking down
+                let memAddress = 16384+location;
+                do Memory.poke(memAddress+0, 0);
+                do Memory.poke(memAddress+32, 1943);
+                do Memory.poke(memAddress+64, 4095);
+                do Memory.poke(memAddress+96, 8093);
+                do Memory.poke(memAddress+128, 16013);
+                do Memory.poke(memAddress+160, 14692);
+                do Memory.poke(memAddress+192, 32100);
+                do Memory.poke(memAddress+224, 31207);
+                do Memory.poke(memAddress+256, 6655);
+                do Memory.poke(memAddress+288, 7549);
+                do Memory.poke(memAddress+320, 2361);
+                do Memory.poke(memAddress+352, 3584);
+                do Memory.poke(memAddress+384, 0);
+                do Memory.poke(memAddress+416, 0);
+                do Memory.poke(memAddress+448, 0);
+                do Memory.poke(memAddress+480, 0);
+        return;
+    }
     function void move(positionx, positiony, direction){
         //Moves from position in direction
         return;
