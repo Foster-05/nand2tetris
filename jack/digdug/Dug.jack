@@ -1,5 +1,5 @@
 class Dug{
-    function void drawDugLeft(){
+    function void drawDugLeft(int location){
         //Draws character looking left
                 let memAddress = 16384+location;
                 do Memory.poke(memAddress+0, 0);
@@ -20,8 +20,9 @@ class Dug{
                 do Memory.poke(memAddress+480, 1950);
         return;
     }
-    function void drawDugRight(){
+    function void drawDugRight(int location){
         //Draws character,looking right
+                int memAddress = 0
                 let memAddress = 16384+location;
                 do Memory.poke(memAddress+0, 0);
                 do Memory.poke(memAddress+32, 192);
@@ -41,7 +42,7 @@ class Dug{
                 do Memory.poke(memAddress+480, 1950);
         return;
     }
-    function void drawDugUp(){
+    function void drawDugUp(int location){
         //Draws character, looking up
                 let memAddress = 16384+location;
                 do Memory.poke(memAddress+0, 0);
@@ -62,7 +63,7 @@ class Dug{
                 do Memory.poke(memAddress+480, 0);
         return;
     }
-    function void drawDugDown(){
+    function void drawDugDown(int location){
         //Draws character, looking down
                 let memAddress = 16384+location;
                 do Memory.poke(memAddress+0, 0);
@@ -90,6 +91,7 @@ class Dug{
 
     function void attack(positionx, positiony, direction){
         //To be implemented later: attacks in direction character is pointing
+        return;
     }
 
 

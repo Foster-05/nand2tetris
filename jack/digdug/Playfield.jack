@@ -3,6 +3,7 @@ class Playfield{
         // Updates entire screen of dirt from current tilemap
 
 		//for block in tilemap, updateDirt
+		//returns playfield object we can mess with? otherwise turn this back into a function
 		return;
 }
 	function void updateRocks(){

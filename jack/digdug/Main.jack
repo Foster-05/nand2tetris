@@ -1,6 +1,7 @@
 class Main{
 	function void main(){
 		do Output.printString("digdug lol");
+		do Dug.drawDugLeft(0);
 		return;
 }
 }
