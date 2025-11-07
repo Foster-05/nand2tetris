@@ -1,0 +1,418 @@
+function Dug.drawDugLeft 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 192
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 240
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 2654
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 2078
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 2030
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 414
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 996
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 2020
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 1806
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 1820
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1022
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 390
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1950
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Dug.drawDugRight 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 192
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 240
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 4092
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 2654
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 2078
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 2030
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 414
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 996
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 2020
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 1806
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 1820
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1022
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 390
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1950
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Dug.drawDugUp 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 3584
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 2361
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 7549
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 6655
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 31207
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 32100
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 14692
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 16013
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 8093
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 4087
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1943
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Dug.drawDugDown 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1943
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 4095
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 8093
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 16013
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 14692
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 32100
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 31207
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 6655
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 7549
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 2361
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 3584
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Dug.move 0
+push constant 0
+return
+function Dug.attack 0
+push constant 0
+return

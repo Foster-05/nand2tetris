@@ -1,0 +1,652 @@
+function Playfield.new 0
+push constant 0
+call Memory.alloc 1
+pop pointer 0
+push pointer 0
+return
+function Playfield.updateRocks 0
+push constant 0
+return
+function Playfield.checkFilled 0
+push constant 0
+return
+function Playfield.updateDirt 0
+push constant 0
+return
+function Playfield.drawDirtFull 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16400
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1024
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 128
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8196
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 32
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 4097
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 2116
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Playfield.drawRock 0
+push constant 0
+return
+function Playfield.drawDirtTopOpen 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 29597
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 29597
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16400
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1024
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 128
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8196
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 32
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 4097
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 2116
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Playfield.drawDirtBottomOpen 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16400
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1024
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 128
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8196
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 32
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 4097
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 8
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 14798
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 14799
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Playfield.drawDirtLeftOpen 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 513
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16402
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1026
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 9
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 130
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8194
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 33
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 4097
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 258
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 10
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 2113
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Playfield.drawDirtBLOpen 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 513
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 16402
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1026
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 9
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 130
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8198
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 33
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 4097
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 258
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 10
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 14798
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 14799
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Playfield.drawDirtTLOpen 1
+push constant 16384
+push argument 0
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 14799
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 14798
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 130
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1030
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 8193
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 33
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 258
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 10
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 32767
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 2049
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 2
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 18
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 130
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 8193
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Playfield.checkTile 0
+push constant 0
+return
+function Playfield.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
