@@ -6,7 +6,195 @@ class Dug{
         do Dug.drawDugBRFL(location + 513);
         return;
     }
-    
+    function void drawDugFU(int location){
+        do Dug.drawDugTLFU(location);
+        do Dug.drawDugTRFU(location + 1);
+        do Dug.drawDugBLFU(location + 512);
+        do Dug.drawDugBRFU(location + 513);
+        return;
+    }
+    function void drawDugFR(int location){
+        do Dug.drawDugTLFR(location);
+        do Dug.drawDugTRFR(location + 1);
+        do Dug.drawDugBLFR(location + 512);
+        do Dug.drawDugBRFR(location + 513);
+        return;
+    }
+    function void drawDugFD(int location){
+        do Dug.drawDugTLFD(location);
+        do Dug.drawDugTRFD(location + 1);
+        do Dug.drawDugBLFD(location + 512);
+        do Dug.drawDugBRFD(location + 513);
+        return;
+    }
+    function void drawDugBLFD(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 15918);
+	do Memory.poke(memAddress+32, 7718);
+	do Memory.poke(memAddress+64, 3616);
+	do Memory.poke(memAddress+96, 3616);
+	do Memory.poke(memAddress+128, 3696);
+	do Memory.poke(memAddress+160, 1144);
+	do Memory.poke(memAddress+192, 124);
+	do Memory.poke(memAddress+224, 126);
+	do Memory.poke(memAddress+256, 254);
+	do Memory.poke(memAddress+288, -32258);
+	do Memory.poke(memAddress+320, -16066);
+	do Memory.poke(memAddress+352, 25374);
+	do Memory.poke(memAddress+384, 15886);
+	do Memory.poke(memAddress+416, 3086);
+	do Memory.poke(memAddress+448, 6);
+	do Memory.poke(memAddress+480, 0);
+	return;
+}
+function void drawDugTLFD(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 0);
+	do Memory.poke(memAddress+32, -8192);
+	do Memory.poke(memAddress+64, -4096);
+	do Memory.poke(memAddress+96, -2048);
+	do Memory.poke(memAddress+128, -2048);
+	do Memory.poke(memAddress+160, -64);
+	do Memory.poke(memAddress+192, -24592);
+	do Memory.poke(memAddress+224, 120);
+	do Memory.poke(memAddress+256, 124);
+	do Memory.poke(memAddress+288, 24702);
+	do Memory.poke(memAddress+320, -3970);
+	do Memory.poke(memAddress+352, -1922);
+	do Memory.poke(memAddress+384, -1922);
+	do Memory.poke(memAddress+416, -898);
+	do Memory.poke(memAddress+448, 32318);
+	do Memory.poke(memAddress+480, 15918);
+	return;
+}
+function void drawDugBRFD(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 24706);
+	do Memory.poke(memAddress+32, 8322);
+	do Memory.poke(memAddress+64, 8378);
+	do Memory.poke(memAddress+96, 12542);
+	do Memory.poke(memAddress+128, 4282);
+	do Memory.poke(memAddress+160, 6274);
+	do Memory.poke(memAddress+192, 2178);
+	do Memory.poke(memAddress+224, 3202);
+	do Memory.poke(memAddress+256, 9402);
+	do Memory.poke(memAddress+288, 21758);
+	do Memory.poke(memAddress+320, 9915);
+	do Memory.poke(memAddress+352, 643);
+	do Memory.poke(memAddress+384, 17286);
+	do Memory.poke(memAddress+416, -22132);
+	do Memory.poke(memAddress+448, 21752);
+	do Memory.poke(memAddress+480, 2160);
+	return;
+}
+function void drawDugTRFD(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 0);
+	do Memory.poke(memAddress+32, 7);
+	do Memory.poke(memAddress+64, 15);
+	do Memory.poke(memAddress+96, 1007);
+	do Memory.poke(memAddress+128, 3647);
+	do Memory.poke(memAddress+160, 14343);
+	do Memory.poke(memAddress+192, 24577);
+	do Memory.poke(memAddress+224, 16496);
+	do Memory.poke(memAddress+256, -16168);
+	do Memory.poke(memAddress+288, -32628);
+	do Memory.poke(memAddress+320, -32636);
+	do Memory.poke(memAddress+352, -32634);
+	do Memory.poke(memAddress+384, -16254);
+	do Memory.poke(memAddress+416, 16514);
+	do Memory.poke(memAddress+448, 16514);
+	do Memory.poke(memAddress+480, 16514);
+	return;
+}
+    function void drawDugBRFR(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 1536);
+	do Memory.poke(memAddress+32, 3072);
+	do Memory.poke(memAddress+64, 6145);
+	do Memory.poke(memAddress+96, 4099);
+	do Memory.poke(memAddress+128, 12319);
+	do Memory.poke(memAddress+160, 12351);
+	do Memory.poke(memAddress+192, 6175);
+	do Memory.poke(memAddress+224, 3584);
+	do Memory.poke(memAddress+256, 768);
+	do Memory.poke(memAddress+288, 1008);
+	do Memory.poke(memAddress+320, 2047);
+	do Memory.poke(memAddress+352, 4080);
+	do Memory.poke(memAddress+384, 16353);
+	do Memory.poke(memAddress+416, 32707);
+	do Memory.poke(memAddress+448, 32643);
+	do Memory.poke(memAddress+480, 0);
+	return;
+}
+function void drawDugBLFR(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 15486);
+	do Memory.poke(memAddress+32, 32318);
+	do Memory.poke(memAddress+64, -450);
+	do Memory.poke(memAddress+96, -900);
+	do Memory.poke(memAddress+128, -1928);
+	do Memory.poke(memAddress+160, -8096);
+	do Memory.poke(memAddress+192, -16288);
+	do Memory.poke(memAddress+224, 96);
+	do Memory.poke(memAddress+256, 96);
+	do Memory.poke(memAddress+288, 16352);
+	do Memory.poke(memAddress+320, -64);
+	do Memory.poke(memAddress+352, 32704);
+	do Memory.poke(memAddress+384, -128);
+	do Memory.poke(memAddress+416, -256);
+	do Memory.poke(memAddress+448, -512);
+	do Memory.poke(memAddress+480, 0);
+	return;
+}
+function void drawDugTRFR(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 8192);
+	do Memory.poke(memAddress+32, 20993);
+	do Memory.poke(memAddress+64, 9487);
+	do Memory.poke(memAddress+96, 16952);
+	do Memory.poke(memAddress+128, -24352);
+	do Memory.poke(memAddress+160, 18304);
+	do Memory.poke(memAddress+192, 7168);
+	do Memory.poke(memAddress+224, 12288);
+	do Memory.poke(memAddress+256, 32767);
+	do Memory.poke(memAddress+288, -15864);
+	do Memory.poke(memAddress+320, -14564);
+	do Memory.poke(memAddress+352, -14564);
+	do Memory.poke(memAddress+384, 26396);
+	do Memory.poke(memAddress+416, 12808);
+	do Memory.poke(memAddress+448, 8191);
+	do Memory.poke(memAddress+480, 3072);
+	return;
+}
+function void drawDugTLFR(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 7936);
+	do Memory.poke(memAddress+32, -3648);
+	do Memory.poke(memAddress+64, 96);
+	do Memory.poke(memAddress+96, 32);
+	do Memory.poke(memAddress+128, 48);
+	do Memory.poke(memAddress+160, 16);
+	do Memory.poke(memAddress+192, 24);
+	do Memory.poke(memAddress+224, 8);
+	do Memory.poke(memAddress+256, -248);
+	do Memory.poke(memAddress+288, 392);
+	do Memory.poke(memAddress+320, 152);
+	do Memory.poke(memAddress+352, 400);
+	do Memory.poke(memAddress+384, 796);
+	do Memory.poke(memAddress+416, 3646);
+	do Memory.poke(memAddress+448, -1986);
+	do Memory.poke(memAddress+480, 126);
+	return;
+}
     function void drawDugTLFL(int location) {
     var int memAddress;
 	let memAddress = 16384+location;
@@ -88,6 +276,90 @@ function void drawDugBLFL(int location) {
 	do Memory.poke(memAddress+384, -30724);
 	do Memory.poke(memAddress+416, -15362);
 	do Memory.poke(memAddress+448, -15874);
+	do Memory.poke(memAddress+480, 0);
+	return;
+}
+function void drawDugTLFU(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 0);
+	do Memory.poke(memAddress+32, 6);
+	do Memory.poke(memAddress+64, 3086);
+	do Memory.poke(memAddress+96, 15886);
+	do Memory.poke(memAddress+128, 25374);
+	do Memory.poke(memAddress+160, -16066);
+	do Memory.poke(memAddress+192, -32258);
+	do Memory.poke(memAddress+224, 254);
+	do Memory.poke(memAddress+256, 126);
+	do Memory.poke(memAddress+288, 124);
+	do Memory.poke(memAddress+320, 1144);
+	do Memory.poke(memAddress+352, 3696);
+	do Memory.poke(memAddress+384, 3616);
+	do Memory.poke(memAddress+416, 3616);
+	do Memory.poke(memAddress+448, 7718);
+	do Memory.poke(memAddress+480, 15918);
+	return;
+}
+function void drawDugBLFU(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 15918);
+	do Memory.poke(memAddress+32, 32318);
+	do Memory.poke(memAddress+64, -898);
+	do Memory.poke(memAddress+96, -1922);
+	do Memory.poke(memAddress+128, -1922);
+	do Memory.poke(memAddress+160, -3970);
+	do Memory.poke(memAddress+192, 24702);
+	do Memory.poke(memAddress+224, 124);
+	do Memory.poke(memAddress+256, 120);
+	do Memory.poke(memAddress+288, -24592);
+	do Memory.poke(memAddress+320, -64);
+	do Memory.poke(memAddress+352, -2048);
+	do Memory.poke(memAddress+384, -2048);
+	do Memory.poke(memAddress+416, -4096);
+	do Memory.poke(memAddress+448, -8192);
+	do Memory.poke(memAddress+480, 0);
+	return;
+}
+function void drawDugTRFU(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 2160);
+	do Memory.poke(memAddress+32, 21752);
+	do Memory.poke(memAddress+64, -22132);
+	do Memory.poke(memAddress+96, 17286);
+	do Memory.poke(memAddress+128, 643);
+	do Memory.poke(memAddress+160, 9915);
+	do Memory.poke(memAddress+192, 21758);
+	do Memory.poke(memAddress+224, 9402);
+	do Memory.poke(memAddress+256, 3202);
+	do Memory.poke(memAddress+288, 2178);
+	do Memory.poke(memAddress+320, 6274);
+	do Memory.poke(memAddress+352, 4282);
+	do Memory.poke(memAddress+384, 12542);
+	do Memory.poke(memAddress+416, 8378);
+	do Memory.poke(memAddress+448, 8322);
+	do Memory.poke(memAddress+480, 24706);
+	return;
+}
+function void drawDugBRFU(int location) {
+    var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 16514);
+	do Memory.poke(memAddress+32, 16514);
+	do Memory.poke(memAddress+64, 16514);
+	do Memory.poke(memAddress+96, -16254);
+	do Memory.poke(memAddress+128, -32634);
+	do Memory.poke(memAddress+160, -32636);
+	do Memory.poke(memAddress+192, -32628);
+	do Memory.poke(memAddress+224, -16168);
+	do Memory.poke(memAddress+256, 16496);
+	do Memory.poke(memAddress+288, 24577);
+	do Memory.poke(memAddress+320, 14343);
+	do Memory.poke(memAddress+352, 3647);
+	do Memory.poke(memAddress+384, 1007);
+	do Memory.poke(memAddress+416, 15);
+	do Memory.poke(memAddress+448, 7);
 	do Memory.poke(memAddress+480, 0);
 	return;
 }

@@ -2,6 +2,9 @@ class Main{
 	function void main(){
 		do Output.printString("digdug lol");
 		do Dug.drawDugFL(200);
+		do Dug.drawDugFR(240);
+		do Dug.drawDugFD(280);
+		do Dug.drawDugFU(320);
 		do Playfield.drawDirtBLOpen(2500);
 		return;
 }
