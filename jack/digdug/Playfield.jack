@@ -11,7 +11,7 @@ class Playfield{
 		// Shouldn't have to call frequently, ideally we update single tiles surrounding player
 		return;
 }
-	function void checkFilled(str direction){/*boolean*/ 
+	function void checkFilled(int direction){/*boolean*/ 
 		// When moving in a direction, checks if square is filled or not based on current position in tilemap
 		return;// bool;
 	}

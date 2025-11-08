@@ -87,12 +87,12 @@ class Dug{
                 do Memory.poke(memAddress+480, 0);
         return;
     }
-    function void move(int positionx, int positiony, str direction){
+    function void move(int positionx, int positiony, int direction){
         //Moves from position in direction
         return;
     }
 
-    function void attack(int positionx, int positiony, str direction){
+    function void attack(int positionx, int positiony, int direction){
         //To be implemented later: attacks in direction character is pointing
         return;
     }
