@@ -20,6 +20,13 @@ class Playfield{
 
 		return;
 }
+	function int xytolocation(int x, int y){
+		//converts a tilemap address in xy coords to a screen location
+		var int location;
+		let location = y*512;
+		let location = location + x;
+		return location;
+	}
 function void drawDirtFull(int location) {
 	var int memAddress;
 	let memAddress = 16384+location;
