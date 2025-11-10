@@ -1,38 +1,4 @@
-function Main.main 0
-    push constant 10
-    call String.new 1
-    push constant 100
-    call String.appendChar 2
-    push constant 105
-    call String.appendChar 2
-    push constant 103
-    call String.appendChar 2
-    push constant 100
-    call String.appendChar 2
-    push constant 117
-    call String.appendChar 2
-    push constant 103
-    call String.appendChar 2
-    push constant 32
-    call String.appendChar 2
-    push constant 108
-    call String.appendChar 2
-    push constant 111
-    call String.appendChar 2
-    push constant 108
-    call String.appendChar 2
-    call Output.printString 1
-    pop temp 0
-    push constant 200
-    call Dug.drawDugLeft 1
-    pop temp 0
-    push constant 1000
-    call Playfield.drawDirtBLOpen 1
-    pop temp 0
-    call Tilemap.new 0
-    pop temp 0
-    push constant 0
-    return
+function Main.main 1
 push constant 10
 call String.new 1
 push constant 100
@@ -57,11 +23,11 @@ push constant 108
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push constant 200
-call Dug.drawDugFL 1
+call Tilemap.new 0
 pop temp 0
-push constant 2500
-call Playfield.drawDirtBLOpen 1
-pop temp 0
+push constant 1
+push constant 3
+call ActionDug.new 2
+pop local 0
 push constant 0
 return

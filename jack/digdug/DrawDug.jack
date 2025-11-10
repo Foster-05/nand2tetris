@@ -1,6 +1,6 @@
 class DrawDug{
 	static int memAddress;
-
+/*
     function void drawDugFL(int location){
         do DrawDug.drawDugTLFL(location);
         do DrawDug.drawDugTRFL(location + 1);
@@ -15,6 +15,7 @@ class DrawDug{
         do DrawDug.drawDugBRFU(location + 513);
         return;
     }
+	*/
     function void drawDugFR(int location){
         do DrawDug.drawDugTLFR(location);
         do DrawDug.drawDugTRFR(location + 1);
@@ -22,6 +23,7 @@ class DrawDug{
         do DrawDug.drawDugBRFR(location + 513);
         return;
     }
+	/*
     function void drawDugFD(int location){
         do DrawDug.drawDugTLFD(location);
         do DrawDug.drawDugTRFD(location + 1);
@@ -29,6 +31,7 @@ class DrawDug{
         do DrawDug.drawDugBRFD(location + 513);
         return;
     }
+	
     function void drawDugBLFD(int location) {
     
 	let memAddress = 16384+location;
@@ -113,6 +116,7 @@ function void drawDugTRFD(int location) {
 	do Memory.poke(memAddress+480, 16514);
 	return;
 }
+*/
     function void drawDugBRFR(int location) {
     
 	let memAddress = 16384+location;
@@ -197,6 +201,7 @@ function void drawDugTLFR(int location) {
 	do Memory.poke(memAddress+480, 126);
 	return;
 }
+/*
     function void drawDugTLFL(int location) {
     
 	let memAddress = 16384+location;
@@ -365,5 +370,5 @@ function void drawDugBRFU(int location) {
 	do Memory.poke(memAddress+480, 0);
 	return;
 }
-
+*/
 }

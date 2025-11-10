@@ -51,7 +51,9 @@ function void drawDirtFull(int location) {
 	function void drawRock(int x, int y){
         // Draws a rock over an existing square
 		return;
+		
 }
+/*
 function void drawDirtTopOpen(int location) {
 	var int memAddress;
 	let memAddress = 16384+location;
@@ -157,6 +159,7 @@ function void drawDirtTLOpen(int location) {
 	do Memory.poke(memAddress+480, 1);
 	return;
 }
+*/
 	function void checkTile(int x, int y){//bool
         // Checks if arbitrary tile is empty or full
 		return;

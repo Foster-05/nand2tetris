@@ -13,13 +13,13 @@ class Tilemap {
         return this;
     }
 
-    function int getTile(int x, int y) {
+    method int getTile(int x, int y) {
         var Array arr;
         let arr = map[x];
         return arr[y];
     }
 
-    function void setTile(int x, int y, int value) {
+    method void setTile(int x, int y, int value) {
         var Array arr;
         let arr = map[x];
         let arr[y] = value;
