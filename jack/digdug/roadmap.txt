@@ -25,3 +25,7 @@ fun stuff:
 -timing
 -blowup attack
 -lives
+
+
+
+as of monday:

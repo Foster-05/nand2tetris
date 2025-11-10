@@ -9,9 +9,10 @@ class ActionDug{
         do DrawDug.drawDugFR(location);
         return this;
     }
-    function void move(int positionx, int positiony, int direction){
+    function void move(int direction){
         //Moves from position in direction
         //direction: 0=right, 1=left, 2=up, 3=down
+
 
         return;
     }

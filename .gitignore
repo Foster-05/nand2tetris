@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
-
+#fuckass compiled vm files
+*.vm
 # Log file
 *.log
 
