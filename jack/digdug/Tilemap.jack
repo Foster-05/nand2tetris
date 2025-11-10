@@ -1,0 +1,107 @@
+/*Tilemap storing game tiles, allowing for the 
+manipulation of game tiles */
+class Tilemap {
+    field int mapWidth;
+    field int mapHeight;
+    field Array map;
+
+    constructor Tilemap new() {
+        let mapWidth = 32;
+        let mapHeight = 16;
+        do initializeMap();
+
+        return this;
+    }
+
+    function int getTile(int x, int y) {
+        var Array arr;
+        let arr = map[x];
+        return arr[y];
+    }
+
+    function void setTile(int x, int y, int value) {
+        var Array arr;
+        let arr = map[x];
+        let arr[y] = value;
+        return;
+    }
+
+    /*
+    initializeMap helper, filling an array of length length with
+    arrays of length size.
+
+    @param:
+    arr => array to be filled
+    length => length of arr
+    size => size of arrays to fill with
+    */
+    function void fillArray(Array arr, int length, int size) {
+        var int index;
+        let index = 0;
+
+        while (index < length) {
+            let arr[index] = Array.new(size);
+            let index = index + 1;
+        }
+
+        return;
+    }
+
+    /*
+    initializeMap helper, filling an array of length length with
+    an integer value
+
+    @param:
+    arr => array to be filled
+    length => length of arr
+    value => integer value to fill with
+    */
+    function void fillInt(Array arr, int length, int value) {
+        var int index;
+        let index = 0;
+
+        while (index < length) {
+            let index = index + 1;
+            let arr[index] = value;
+        }
+
+        return;
+
+    }
+
+    /*
+    initializes map to a generic sample map
+    */
+    method void initializeMap() {
+
+        var int index;
+        var Array arr;
+
+        let map = Array.new(16);
+        /*
+        do Tilemap.fillArray(map, mapHeight, mapWidth);
+
+        let index = 2;
+
+        //Creates air on top two layers
+        do Tilemap.fillInt(map[0], mapWidth, 0);
+        do Tilemap.fillInt(map[1], mapWidth, 0);
+
+        //Fills rest of map with dirt
+        while (index < mapHeight) {
+            do Tilemap.fillInt(map[index], mapWidth, 1);
+            let index = index + 1;
+        }
+
+        //Adds a few tunnels of air within the dirt
+        let arr = map[3];
+        let arr[3] = 0;
+        let arr[4] = 0;
+        let arr[5] = 0;
+        let arr[6] = 0;
+
+        */
+        return;
+    }
+}
+	

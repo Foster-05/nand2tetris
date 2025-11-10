@@ -3,6 +3,7 @@ class Main{
 		do Output.printString("digdug lol");
 		do Dug.drawDugLeft(200);
 		do Playfield.drawDirtBLOpen(1000);
+		do Tilemap.new();
 		return;
 }
 }
