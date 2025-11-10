@@ -1,6 +1,6 @@
 class ActionDug{
-    field int x,y; //position of top-left of dug
-    field int location; //screen location of top-left of dug
+    static int x,y; //position of top-left of dug
+    static int location; //screen location of top-left of dug
 
     constructor ActionDug new(int ax, int ay){
         let x = ax;

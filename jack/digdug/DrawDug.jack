@@ -1,5 +1,5 @@
 class DrawDug{
-	field int memAddress;
+	static int memAddress;
 
     function void drawDugFL(int location){
         do DrawDug.drawDugTLFL(location);
