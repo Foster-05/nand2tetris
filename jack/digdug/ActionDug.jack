@@ -2,7 +2,7 @@ class ActionDug{
     field int a; //any field variable is required...
     static int direction;
     static int x,y; //position of top-left of dug
-    static int location; //screen location of top-left of dug
+    static int location; //screen location (memory address) of top-left of dug: 32x16 screen, each 16 pixels is represented as one memory address
 
     constructor ActionDug new(int ax, int ay, int dir){
                 //do Output.printString("digdug lol -2");
@@ -22,60 +22,114 @@ class ActionDug{
         return this;
     }
     
-    method void turnRight(){
+    function void turnRight(){
         do DrawDug.clearDug(location);
         do DrawDug.drawDugFR(location);
         let direction = 0;
         return;
     }
-    method void turnLeft(){
+    function void turnLeft(){
         do DrawDug.clearDug(location);
         do DrawDug.drawDugFL(location);
         let direction = 1;
         return;
     }
-    method void turnUp(){
+    function void turnUp(){
         do DrawDug.clearDug(location);
         do DrawDug.drawDugFU(location);
         let direction = 2;
         return;
     }
-    method void turnDown(){
+    function void turnDown(){
         do DrawDug.clearDug(location);
         do DrawDug.drawDugFD(location);
         let direction = 3;
         return;
     }
-    method void walkLeft(){
-        do DrawDug.clearDug(location);
-        let location = location - 16;
-        do DrawDug.drawDugFL(location);
+    function void walkLeft(){
+        if (Modulo.modulo(location,32) = 0){
+        }
+        else{
+            do DrawDug.clearDug(location);
+            let location = location - 1;
+            do DrawDug.drawDugFL(location);
+        }
+
+        return;
+    }
+    function void walkRight(){
+        if (Modulo.modulo(location+2,32) = 0){
+        }
+        else{
+            do DrawDug.clearDug(location);
+            let location = location + 1;
+            do DrawDug.drawDugFR(location);
+        }
+
+        return;
+    }
+    function void walkUp(){
+        if (~(location-32) > 0){
+
+        }
+        else{
+            do DrawDug.clearDug(location);
+            let location = location - 512;
+            do DrawDug.drawDugFU(location);
+        }
+
+        return;
+    }
+    function void walkEmDown(){
+        if ((location + 32) > 7000){
+        }
+        else{
+            do DrawDug.clearDug(location);
+            let location = location + 512;
+            do DrawDug.drawDugFD(location);
+        }
+
         return;
     }
 
     function void move(){
-        //Moves from position in direction detected by keyboard.
+        //Moves or turns from position in direction detected by keyboard.
         //direction: 0=right, 1=left, 2=up, 3=down
-        if (Keyboard.keyPressed() = 130) {//left
+                if (Keyboard.keyPressed() = 130) {//left
         if (~(direction = 1)) {
-            do turnLeft();
+            do ActionDug.turnLeft();
         }
         else {
-            do walkLeft();
+            do ActionDug.walkLeft();
         }
         }
-        
-/*
-        else if (Keyboard.keyPressed() == 132) and (direction != 0) {//right
-            do turnRight();
+
+                if (Keyboard.keyPressed() = 132) {//right
+        if (~(direction = 0)) {
+            do ActionDug.turnRight();
         }
-        else if (Keyboard.keyPressed() == 131) and (direction != 2) {//up
-            do turnUp();
+        else {
+            do ActionDug.walkRight();
         }
-        else if (Keyboard.keyPressed() == 133) and (direction != 3) {//down
-            do turnDown();
         }
-*/
+
+               if (Keyboard.keyPressed() = 131) {//up
+        if (~(direction = 2)) {
+            do ActionDug.turnUp();
+        }
+        else {
+            do ActionDug.walkUp();
+        }
+        }
+
+               if (Keyboard.keyPressed() = 133) {//down
+        if (~(direction = 3)) {
+            do ActionDug.turnDown();
+        }
+        else {
+            do ActionDug.walkEmDown();
+        }
+        }
         return;
     }
 

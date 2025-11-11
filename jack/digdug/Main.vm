@@ -27,7 +27,18 @@ call Tilemap.new 0
 pop temp 0
 push constant 1
 push constant 3
-call ActionDug.new 2
+push constant 0
+call ActionDug.new 3
 pop local 0
+label WHILE_EXP0
+push constant 1
+push constant 1
+eq
+not
+if-goto WHILE_END0
+call ActionDug.move 0
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
 push constant 0
 return

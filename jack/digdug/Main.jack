@@ -1,13 +1,16 @@
 class Main{
 	function void main(){
 		var ActionDug dug;
+				var int modulo;
 		do Output.printString("digdug lol");
 		do Tilemap.new();
 		let dug = ActionDug.new(1, 3, 0);
 
-		while (1){
+		while (1 = 1){
 			do ActionDug.move();
+			do Sys.wait(8);
 		}
+
 		return;
 }
 }

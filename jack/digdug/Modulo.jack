@@ -1,0 +1,9 @@
+class Modulo{
+    //returns 0 if input is divisible by divisor. Otherwise is valued (not really modulo lol just a similar use case)
+    function int modulo(int input, int divisor){
+        while (input > 0){
+            let input = input - divisor;
+        }
+        return input;
+    }
+}
