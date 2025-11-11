@@ -46,12 +46,36 @@ class ActionDug{
         let direction = 3;
         return;
     }
+    method void walkLeft(){
+        do DrawDug.clearDug(location);
+        let location = location - 16;
+        do DrawDug.drawDugFL(location);
+        return;
+    }
 
-    function void move(int direction){
-        //Moves from position in direction
+    function void move(){
+        //Moves from position in direction detected by keyboard.
         //direction: 0=right, 1=left, 2=up, 3=down
-
-
+        if (Keyboard.keyPressed() = 130) {//left
+        if (~(direction = 1)) {
+            do turnLeft();
+        }
+        else {
+            do walkLeft();
+        }
+        }
+        
+/*
+        else if (Keyboard.keyPressed() == 132) and (direction != 0) {//right
+            do turnRight();
+        }
+        else if (Keyboard.keyPressed() == 131) and (direction != 2) {//up
+            do turnUp();
+        }
+        else if (Keyboard.keyPressed() == 133) and (direction != 3) {//down
+            do turnDown();
+        }
+*/
         return;
     }
 
