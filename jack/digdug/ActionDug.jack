@@ -101,7 +101,7 @@ class ActionDug{
         }
         else {
             do ActionDug.walkLeft();
-             do updateSurroundingTiles();
+             do updateSurroundingTiles(playfield);
         }
         }
 
@@ -111,7 +111,7 @@ class ActionDug{
         }
         else {
             do ActionDug.walkRight();
-             do updateSurroundingTiles();
+             do updateSurroundingTiles(playfield);
         }
         }
 
@@ -121,7 +121,7 @@ class ActionDug{
         }
         else {
             do ActionDug.walkUp();
-             do updateSurroundingTiles();
+             do updateSurroundingTiles(playfield);
         }
         }
 
@@ -131,14 +131,14 @@ class ActionDug{
         }
         else {
             do ActionDug.walkEmDown();
-            do updateSurroundingTiles();
+            do updateSurroundingTiles(playfield);
         }
         }
 
         return;
     }
 
-    method void updateSurroundingTiles(){
+    method void updateSurroundingTiles(Playfield playfield){
         do playfield.updateTile(x,y);
         do playfield.updateTile(x,y+2);
         do playfield.updateTile(x,y-1);
