@@ -3,13 +3,13 @@ class Main{
 		var ActionDug dug;
 		var int modulo;
 		var Playfield playfield;
-		do Output.printString("digdug lol");
+
 		let dug = ActionDug.new(3, 0, 0);
 
 		let playfield = Playfield.new(32, 16);
 		while (1=1){
 			do ActionDug.move();
-			do Sys.wait(8);
+			do Sys.wait(17);
 		}
 
 		return;
