@@ -54,7 +54,7 @@ class ActionDug{
             let location = location - 1;
             do DrawDug.drawDugFL(location);
         }
-
+        let x = x - 1;
         return;
     }
     function void walkRight(){
@@ -65,7 +65,7 @@ class ActionDug{
             let location = location + 1;
             do DrawDug.drawDugFR(location);
         }
-
+        let x = x + 1;
         return;
     }
     function void walkUp(){
@@ -77,7 +77,7 @@ class ActionDug{
             let location = location - 512;
             do DrawDug.drawDugFU(location);
         }
-
+        let y = y + 1;
         return;
     }
     function void walkEmDown(){
@@ -88,11 +88,11 @@ class ActionDug{
             let location = location + 512;
             do DrawDug.drawDugFD(location);
         }
-
+        let y = y - 1;
         return;
     }
 
-    function void move(){
+    function void move(Playfield playfield){
         //Moves or turns from position in direction detected by keyboard.
         //direction: 0=right, 1=left, 2=up, 3=down
                 if (Keyboard.keyPressed() = 130) {//left
@@ -101,6 +101,7 @@ class ActionDug{
         }
         else {
             do ActionDug.walkLeft();
+             do updateSurroundingTiles();
         }
         }
 
@@ -110,6 +111,7 @@ class ActionDug{
         }
         else {
             do ActionDug.walkRight();
+             do updateSurroundingTiles();
         }
         }
 
@@ -119,6 +121,7 @@ class ActionDug{
         }
         else {
             do ActionDug.walkUp();
+             do updateSurroundingTiles();
         }
         }
 
@@ -128,11 +131,23 @@ class ActionDug{
         }
         else {
             do ActionDug.walkEmDown();
+            do updateSurroundingTiles();
         }
         }
+
         return;
     }
 
+    method void updateSurroundingTiles(){
+        do playfield.updateTile(x,y);
+        do playfield.updateTile(x,y+2);
+        do playfield.updateTile(x,y-1);
+        do playfield.updateTile(x+2,y);
+        do playfield.updateTile(x+2,y+1);
+        do playfield.updateTile(x+1,y-1);
+        do playfield.updateTile(x+1,y+2);
+        return;
+    }
     function void attack(int positionx, int positiony, int direction){
         //To be implemented later: attacks in direction character is pointing
         return;

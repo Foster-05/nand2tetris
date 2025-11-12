@@ -79,7 +79,7 @@ class Playfield{
 		}
 
 		let location = Playfield.xytolocation(x, y);
-
+		do DrawDirt.clearDirt(x, y);
 		do DrawDirt.drawDirt(location, spriteID);
 
 		return;

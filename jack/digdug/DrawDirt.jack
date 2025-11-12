@@ -1,5 +1,28 @@
 class DrawDirt{
-
+	
+	function void clearDirt(int x, int y){
+		var int loc;
+		var int memAddress;
+		let loc = Playfield.xytolocation(x, y);
+		let memAddress = 16384+loc;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 0);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, 0);
+		do Memory.poke(memAddress+160, 0);
+		do Memory.poke(memAddress+192, 0);
+		do Memory.poke(memAddress+224, 0);
+		do Memory.poke(memAddress+256, 0);
+		do Memory.poke(memAddress+288, 0);
+		do Memory.poke(memAddress+320, 0);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+		return;
+	}
     function void drawDirt(int location, int id) {
 
         if (id < 1 | id > 15) {
