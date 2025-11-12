@@ -19,7 +19,7 @@ class Playfield{
 			while(x < width) {
 				if (~(tilemap.getTile(x, y) = 0)) { // if tile is not air
 					let location = Playfield.xytolocation(x,y);
-					do Playfiel.drawDirt(location);
+					do updateTile(x,y);
 				}
 				let x = x + 1;
 			}
@@ -29,17 +29,18 @@ class Playfield{
 		//for block in tilemap, updateTile
 		//returns playfield object we can mess with? otherwise turn this back into a function
 		return this;
-}
-	function void updateRocks(){
+	}
+	method void updateRocks(){
         // Updates entire screen of rocks from current tilemap
 		// Shouldn't have to call frequently, ideally we update single tiles surrounding player
 		return;
-}
-	function void checkFilled(int direction){/*boolean*/ 
+	}
+	method void checkFilled(int direction){/*boolean*/ 
 		// When moving in a direction, checks if square is filled or not based on current position in tilemap
 		return;// bool;
 	}
-	function void updateTile(int x, int y){
+
+	method void updateTile(int x, int y){
         // Updates tiles player moves into (x,y) from current tilemap
 		var int tile;
 		var int spriteID;
@@ -52,16 +53,16 @@ class Playfield{
 			return;
 		}
 
-		//Check left
-		if ( (x-1) > 0 & tilemap.getTile(x-1, y) = 1) {
+		//Check right
+		if ( (x+1) < width & tilemap.getTile(x+1, y) = 1) {
 			let spriteID = spriteID + 1;
 		}
 		//Check above
-		if ( (y-1) > 0 & tilemap.getTile(x, y-1) = 1) {
+		if ( (y-1) > -1 & tilemap.getTile(x, y-1) = 1) {
 			let spriteID = spriteID + 2;
 		}
-		//Check right
-		if ( (x+1) < width & tilemap.getTile(x+1, y) = 1) {
+		//Check left
+		if ( (x-1) > -1 & tilemap.getTile(x-1, y) = 1) {
 			let spriteID = spriteID + 4;
 		}
 		//Check below
@@ -69,7 +70,7 @@ class Playfield{
 			let spriteID = spriteID + 8;
 		}
 
-		let location = xytolocation(x, y);
+		let location = Playfield.xytolocation(x, y);
 
 		do DrawDirt.drawDirt(location, spriteID);
 
@@ -83,13 +84,13 @@ class Playfield{
 			return location;
 		}
 
-	function void drawRock(int x, int y) {
+	method void drawRock(int x, int y) {
 			// Draws a rock over an existing square
 			return;
 			
 	}
 
-	function void checkTile(int x, int y){//bool
+	method void checkTile(int x, int y){//bool
         // Checks if arbitrary tile is empty or full
 		return;
 }

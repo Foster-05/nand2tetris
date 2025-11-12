@@ -94,18 +94,45 @@ class Tilemap {
         }
 
         //Adds a few tunnels of air within the dirt
-        let arr = map[3];
-        let arr[3] = 0;
+
+        let arr = map[4];
+        let arr[20] = 0;
+        
+        let arr = map[5];
+        let arr[20] = 0;
+
+        let arr = map[6];
+        let arr[20] = 0;
+
+        let arr = map[8];
         let arr[4] = 0;
         let arr[5] = 0;
         let arr[6] = 0;
 
-        let arr = map[4];
-        let arr[3] = 0;
-        let arr[4] = 0;
+        let arr[9] = 0;
+        let arr[10] = 0;
+        let arr[11] = 0;
+
+        let arr = map[7];
         let arr[5] = 0;
-        let arr[6] = 0;
+
+        let arr[9] = 0;
+        let arr[10] = 0;
+        let arr[11] = 0;
+
+        let arr = map[9];
+        let arr[5] = 0;
+
+        let arr[9] = 0;
+        let arr[10] = 0;
+        let arr[11] = 0;
+
+        let arr = map[12];
+        let arr[9] = 0;
+        let arr[10] = 0;
+        let arr[11] = 0;
         
+
         return;
     }
 }
