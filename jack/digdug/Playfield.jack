@@ -31,6 +31,8 @@ class Playfield{
 		if (~(x - prev_x = 0) | (~(y - prev_y = 0))) {
 			do tilemap.setTile(x, y, 0);
 			do tilemap.setTile(x,y+1,0);
+			do tilemap.setTile(x+1,y,0);
+			do tilemap.setTile(x+1,y+1,0);
 			do updateScreen();
 		}
 
