@@ -51,6 +51,7 @@ class ActionDug{
         }
         else{
             do DrawDug.clearDug(location);
+            let x = x - 1;
             let location = location - 1;
             do DrawDug.drawDugFL(location);
         }
@@ -62,6 +63,7 @@ class ActionDug{
         }
         else{
             do DrawDug.clearDug(location);
+            let x = x + 1;
             let location = location + 1;
             do DrawDug.drawDugFR(location);
         }
@@ -74,6 +76,7 @@ class ActionDug{
         }
         else{
             do DrawDug.clearDug(location);
+            let y = y - 1;
             let location = location - 512;
             do DrawDug.drawDugFU(location);
         }
@@ -85,6 +88,7 @@ class ActionDug{
         }
         else{
             do DrawDug.clearDug(location);
+            let y = y + 1;
             let location = location + 512;
             do DrawDug.drawDugFD(location);
         }
@@ -92,7 +96,7 @@ class ActionDug{
         return;
     }
 
-    function void move(){
+    function int move(){
         //Moves or turns from position in direction detected by keyboard.
         //direction: 0=right, 1=left, 2=up, 3=down
                 if (Keyboard.keyPressed() = 130) {//left
@@ -130,12 +134,20 @@ class ActionDug{
             do ActionDug.walkEmDown();
         }
         }
-        return;
+        return direction;
     }
 
     function void attack(int positionx, int positiony, int direction){
         //To be implemented later: attacks in direction character is pointing
         return;
+    }
+
+    function int getX() {
+        return x;
+    }
+
+    function int getY() {
+        return y;
     }
 
 }

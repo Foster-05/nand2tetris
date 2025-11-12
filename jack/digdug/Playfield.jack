@@ -18,6 +18,26 @@ class Playfield{
 		return this;
 	}
 
+	method void moveDug() {
+		var int direction;
+		var int prev_x;
+		var int prev_y;
+		var int x;
+		var int y;
+		do ActionDug.move();
+		let x = ActionDug.getX();
+		let y = ActionDug.getY();
+
+		if (~(x - prev_x = 0) | (~(y - prev_y = 0))) {
+			do tilemap.setTile(x, y, 0);
+			do tilemap.setTile(x,y+1,0);
+			do updateScreen();
+		}
+
+		return;
+
+	}
+
 	method void updateScreen() {
 		var int x;
 		var int y;
