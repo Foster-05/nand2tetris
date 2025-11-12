@@ -425,32 +425,94 @@ class DrawDirt{
 	}
 
     //Draws dirt with closed on right
-    method void drawDirtR(int location) {
+	method void drawDirtR(int location) {
         var int memAddress;
-        let memAddress = 16384+location;
-        return;
-    }
+		let memAddress = 16384 + location;
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 0);
+		do Memory.poke(memAddress + 192, 1984);
+		do Memory.poke(memAddress + 224, 1088);
+		do Memory.poke(memAddress + 256, 1088);
+		do Memory.poke(memAddress + 288, 960);
+		do Memory.poke(memAddress + 320, 1088);
+		do Memory.poke(memAddress + 352, 1088);
+		do Memory.poke(memAddress + 384, 1088);
+		do Memory.poke(memAddress + 416, 1088);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+		return;
+	}
 
-    //Draws dirt with closed on top
-    method void drawDirtT(int location) {
+	method void drawDirtT(int location) {
         var int memAddress;
-        let memAddress = 16384+location;
-        return;
-    }
+		let memAddress = 16384 + location;
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 0);
+		do Memory.poke(memAddress + 192, 1984);
+		do Memory.poke(memAddress + 224, 256);
+		do Memory.poke(memAddress + 256, 256);
+		do Memory.poke(memAddress + 288, 256);
+		do Memory.poke(memAddress + 320, 256);
+		do Memory.poke(memAddress + 352, 256);
+		do Memory.poke(memAddress + 384, 256);
+		do Memory.poke(memAddress + 416, 256);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+		return;
+	}
 
     //Draws dirt with closed on left
-    method void drawDirtL(int location) {
+	method void drawDirtL(int location) {
         var int memAddress;
-        let memAddress = 16384+location;
-        return;
-    }
+		let memAddress = 16384 + location;
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 0);
+		do Memory.poke(memAddress + 192, 64);
+		do Memory.poke(memAddress + 224, 64);
+		do Memory.poke(memAddress + 256, 64);
+		do Memory.poke(memAddress + 288, 64);
+		do Memory.poke(memAddress + 320, 64);
+		do Memory.poke(memAddress + 352, 64);
+		do Memory.poke(memAddress + 384, 64);
+		do Memory.poke(memAddress + 416, 1984);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+		return;
+	}
 
-    //Draws dirt with closed bottom
-    method void drawDirtB(int location) {
+	method void drawDirtB(int location) {
         var int memAddress;
-        let memAddress = 16384+location;
-        return;
-    }
+		let memAddress = 16384 + location;
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 0);
+		do Memory.poke(memAddress + 192, 960);
+		do Memory.poke(memAddress + 224, 1088);
+		do Memory.poke(memAddress + 256, 1088);
+		do Memory.poke(memAddress + 288, 960);
+		do Memory.poke(memAddress + 320, 1088);
+		do Memory.poke(memAddress + 352, 1088);
+		do Memory.poke(memAddress + 384, 1088);
+		do Memory.poke(memAddress + 416, 960);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+		return;
+	}
 
 
 

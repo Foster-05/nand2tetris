@@ -6,13 +6,22 @@ class Playfield{
 
 	constructor Playfield new(int w, int h) {
         // Updates entire screen of dirt from current tilemap
-		var int x;
-		var int y;
-		var int location;
 		let width = w;
 		let height = h;
 
 		let tilemap = Tilemap.new(width, height);
+
+		do updateScreen();
+
+		//for block in tilemap, updateTile
+		//returns playfield object we can mess with? otherwise turn this back into a function
+		return this;
+	}
+
+	method void updateScreen() {
+		var int x;
+		var int y;
+		var int location;
 		let x = 0;
 		let y = 0;
 		while (y < height) {
@@ -26,9 +35,8 @@ class Playfield{
 			let x = 0;
 			let y = y + 1;
 		}
-		//for block in tilemap, updateTile
-		//returns playfield object we can mess with? otherwise turn this back into a function
-		return this;
+
+		return;
 	}
 	method void updateRocks(){
         // Updates entire screen of rocks from current tilemap
@@ -82,7 +90,7 @@ class Playfield{
 			let location = y*512;
 			let location = location + x;
 			return location;
-		}
+	}
 
 	method void drawRock(int x, int y) {
 			// Draws a rock over an existing square
