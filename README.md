@@ -1,4 +1,35 @@
 <h1>nand2tetris</h1>
+<h2> Project 9 </h2>
+Project 9 was assigned as simply "make something in Jack"! Jack is the Java-like
+language for the purposes of nand2tetris with a very simple syntax. Its syntax
+is designed to be intentionally simple so that we may write a compiler for it 
+during Project 10. 9 was intended to familiarize the class with Jack to deepen
+our understanding in order to make 10 easier to understand. For Project 9,
+my partner Gabriel Rottet and I decided to recreate the classic game Dig Dug in
+Jack. We decided that this was sufficiently complicated to warrant a week or two of our time, among other classes and so on.
+
+<img>'Screenshot from 2025-11-19 18-27-41.png'</img>
+
+Our version of Dig Dug implemented moving, digging in the ground, and
+continuously updating tiles based on their surroundings: an air edge would have
+a different texture than a dirt edge. We accomplished all this with a fairly
+simple few classes, namely one each for controlling and drawing our character,
+one to control the tilemap that stores and analyzes what's dirt and air, and
+a few others to tie it together.
+ 
+In the end, we ended up storing and using 32 unique sprites each made with an
+online bitmap editor that changed certain values in memory to update exact
+addresses on the screen. We could manipulate where these get drawn to change
+the character's location, as well as load different dirt sprites to update the
+tiles surrounding the character.
+
+The full program is stored in the jack/digdug folder in this repository.
+If you'd like to run the program for yourself, go to the [Online nand2tetris 
+IDE](https://nand2tetris.github.io/web-ide/compiler) and upload the full contents
+of the folder. Compile, run, and ensure it's run at the full speed available
+and your keyboard is enabled. Have fun!
+
+
 <p>My notes on how to use, syntax, and in-class examples.</p>
 
 To run HardwareSimulator: navigate to nand2tetris root, run ./HardwareSimulator
