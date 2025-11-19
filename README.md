@@ -8,7 +8,7 @@ our understanding in order to make 10 easier to understand. For Project 9,
 my partner Gabriel Rottet and I decided to recreate the classic game Dig Dug in
 Jack. We decided that this was sufficiently complicated to warrant a week or two of our time, among other classes and so on.
 
-<img>'Screenshot from 2025-11-19 18-27-41.png'</img>
+![image of Dig Dug gameplay]('Screenshot from 2025-11-19 18-27-41.png')
 
 Our version of Dig Dug implemented moving, digging in the ground, and
 continuously updating tiles based on their surroundings: an air edge would have
